@@ -9,6 +9,15 @@ export default new Vuex.Store({
       email: '',
       password:''
     },
+    infosConnectedProfile: {
+      prenom: "",
+      nom: "",
+      username: "",
+      email: "",
+      bio: "",
+      pictureURL: "",
+      createdAt: ""
+    },
     champsInscription: {
       prenom: '',
       nom: '',
@@ -21,11 +30,11 @@ export default new Vuex.Store({
       title: '',
       content:''
     }
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    },
+    mutations: {
+    },
+    actions: {
+    },
+    modules: {
   }
 })

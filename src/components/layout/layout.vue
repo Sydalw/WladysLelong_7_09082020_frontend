@@ -46,8 +46,8 @@
             <div class="h-16 w-full absolute left-4 bottom-12">
                 <div class="text-gray-300 hover:text-gray-500 cursor-pointer">
                     <router-link to="/Profile" class="flex items-center h-12 w-12 ">
-                        <img class="rounded-full border" src='../../assets/IMG_1185_mini.jpg'>
-                        <span class="text-sm ml-1 pl-2 hidden md:block">Sydalw</span>
+                        <img class="rounded-full border" :src="getImgUrl(infosProfile.pictureURL)">
+                        <span class="text-sm ml-1 pl-2 hidden md:block">{{infosProfile.username}}</span>
                     </router-link>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                             <path d="m11.812 0c-6.523 0-11.812 5.289-11.812 11.812s5.289 11.813 11.812 11.813 11.813-5.29 11.813-11.813-5.29-11.812-11.813-11.812zm2.459 18.307c-.608.24-1.092.422-1.455.548-.362.126-.783.189-1.262.189-.736 0-1.309-.18-1.717-.539s-.611-.814-.611-1.367c0-.215.015-.435.045-.659.031-.224.08-.476.147-.759l.761-2.688c.067-.258.125-.503.171-.731.046-.23.068-.441.068-.633 0-.342-.071-.582-.212-.717-.143-.135-.412-.201-.813-.201-.196 0-.398.029-.605.09-.205.063-.383.12-.529.176l.201-.828c.498-.203.975-.377 1.43-.521.455-.146.885-.218 1.29-.218.731 0 1.295.178 1.692.53.395.353.594.812.594 1.376 0 .117-.014.323-.041.617-.027.295-.078.564-.152.811l-.757 2.68c-.062.215-.117.461-.167.736-.049.275-.073.485-.073.626 0 .356.079.599.239.728.158.129.435.194.827.194.185 0 .392-.033.626-.097.232-.064.4-.121.506-.17zm-.134-10.878c-.353.328-.778.492-1.275.492-.496 0-.924-.164-1.28-.492-.354-.328-.533-.727-.533-1.193 0-.465.18-.865.533-1.196.356-.332.784-.497 1.28-.497.497 0 .923.165 1.275.497.353.331.53.731.53 1.196 0 .467-.177.865-.53 1.193z" fill="none"/>
                         </svg>
                     </li>
-                    <li class="cursor-pointer text-white pt-5 pb-3">
+                    <li v-on:click="deco" class="cursor-pointer text-white pt-5 pb-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" height="20" width="20" viewBox="0 0 511 512" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z"></path>
                             <path d="m361.5 392v40c0 44.113281-35.886719 80-80 80h-201c-44.113281 0-80-35.886719-80-80v-352c0-44.113281 35.886719-80 80-80h201c44.113281 0 80 35.886719 80 80v40c0 11.046875-8.953125 20-20 20s-20-8.953125-20-20v-40c0-22.054688-17.945312-40-40-40h-201c-22.054688 0-40 17.945312-40 40v352c0 22.054688 17.945312 40 40 40h201c22.054688 0 40-17.945312 40-40v-40c0-11.046875 8.953125-20 20-20s20 8.953125 20 20zm136.355469-170.355469-44.785157-44.785156c-7.8125-7.8125-20.476562-7.8125-28.285156 0-7.8125 7.808594-7.8125 20.472656 0 28.28125l31.855469 31.859375h-240.140625c-11.046875 0-20 8.953125-20 20s8.953125 20 20 20h240.140625l-31.855469 31.859375c-7.8125 7.808594-7.8125 20.472656 0 28.28125 3.90625 3.90625 9.023438 5.859375 14.140625 5.859375 5.121094 0 10.238281-1.953125 14.144531-5.859375l44.785157-44.785156c19.496093-19.496094 19.496093-51.214844 0-70.710938zm0 0" fill="currentColor"/>
@@ -83,7 +83,6 @@
             </div>
         </aside>
         <!-- Sidebar ends -->
-        <!-- Remove class [ h-64 ] when adding a card block -->
         <div class="mx-auto py-10 md:w-4/5 w-11/12 px-4">
                 <!--<Profile /> Place your content here -->
                 <slot name="viewContainer"></slot>
@@ -93,17 +92,66 @@
 
 <script>
 
-//import Profile from '../../views/Profile'
+import axios from 'axios'
 
 export default {
     name: 'Layout',
     components: {
         //Profile
     },
+    data() {
+        return {
+            infosProfile: {
+                prenom: "",
+                nom: "",
+                username: "",
+                email: "",
+                bio: "",
+                pictureURL: "",
+                createdAt: ""
+            }
+        }
+        },
     methods: {
+        getImgUrl: function(pic) {
+            return require('/Users/Wladys/Dropbox/Code/OpenClassrooms/P7/Projet/frontend/src/assets/'+pic)
+        },
+        deco: function() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('id');
+            this.$router.push({name: 'Login'});
+        }
+    },
+    beforeCreate() { 
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('id');
+        axios({
+            method: 'post',
+            url: 'http://localhost:3000/api/user/'+userId,
+            data: {
+                id: userId
+            },
+            headers: {
+                'Authorization': `Basic ${token}` 
+            }
+        })
+        .then(reponse => {
+            console.log(reponse.data);
+            this.infosProfile.nom=reponse.data.nom;
+            this.infosProfile.prenom=reponse.data.prenom;
+            this.infosProfile.username=reponse.data.username;
+            this.infosProfile.email=reponse.data.email;
+            this.infosProfile.bio=reponse.data.bio;
+            this.infosProfile.pictureURL=reponse.data.pictureURL;
+            this.infosProfile.createdAt=reponse.data.createdAt;
+        })
+        .catch(error => {
+            console.log(error);
+            this.$router.push({ name: 'Login' });
+        })
     },
     created() {
-
+        this.$store.state.infosConnectedProfile=this.infosProfile;
     }
 }
 

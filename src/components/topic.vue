@@ -3,12 +3,14 @@
         <div class="flex items-center text-xs mb-2">
             <a href="#" class="font-semibold text-black flex items-center">
                 <!--<img class="rounded-full border h-5 w-5" src="https://avatars0.githubusercontent.com/u/30317862?s=200&v=4">-->
-                <img class="rounded-full border h-5 w-5" src='../assets/IMG_1185_mini.jpg'>
+                <img class="rounded-full border h-5 w-5" :src="getImgUrl(pictureURL)" :alt="username">
                 <!--<span class="ml-2">{{title}}</span>-->
             </a>
             <!--<span class="text-grey-light mx-1 text-xxs">•</span>-->
             <span class="text-gray-500 ml-2">Posté par</span>
-            <a href="#" class="text-gray-500 mx-1 ">{{username}}</a>
+            <router-link to="/Profile" class="text-gray-500 mx-1">
+                {{username}}
+            </router-link>
             <span class="text-gray-500">{{createdAt}} hours ago</span>
         </div>
         <div class="">
@@ -67,6 +69,11 @@
             comments: Number,
             createdAt: String,
             updatedAt: String
+        },
+        methods: {
+            getImgUrl(pic) {
+                return require('/Users/Wladys/Dropbox/Code/OpenClassrooms/P7/Projet/frontend/src/assets/'+pic)
+            }
         }
     }
 </script>
