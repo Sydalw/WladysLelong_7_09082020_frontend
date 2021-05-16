@@ -16,6 +16,10 @@ export default new Vuex.Store({
       email: '',
       pwd1:'',
       pwd2:''
+    },
+    champsPost: {
+      title: '',
+      content:''
     }
   },
   mutations: {

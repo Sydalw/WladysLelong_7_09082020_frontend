@@ -49,8 +49,9 @@ export default {
       axios
       .post('http://localhost:3000/api/login', {email: store.state.champsConnexion.email, password: store.state.champsConnexion.password})
       .then(reponse => {
-        console.log(reponse.data.token);
         localStorage.setItem('token', reponse.data.token);
+        localStorage.setItem('id', reponse.data.userId);
+        this.$router.push('Profile');
       })
       .catch(error => {
         console.log(error);
