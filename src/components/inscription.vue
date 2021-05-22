@@ -3,12 +3,12 @@
         <div class="flex">
             <champForm :largeur="infosChamps[0].largeur" :for_id="infosChamps[0].for_id" :nom="infosChamps[0].nom" :type="infosChamps[0].type" :placeholder="infosChamps[0].placeholder">
                 <template v-slot:input>
-                    <input v-model="$store.state.champsInscription.prenom" :type="infosChamps[0].type" :id="infosChamps[0].for_id" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-900" :placeholder="infosChamps[0].placeholder">
+                    <input v-model="$store.state.champsInscription.surname" :type="infosChamps[0].type" :id="infosChamps[0].for_id" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-900" :placeholder="infosChamps[0].placeholder">
                 </template>
             </champForm>
             <champForm class="justify-end" :largeur="infosChamps[1].largeur" :for_id="infosChamps[1].for_id" :nom="infosChamps[1].nom" :type="infosChamps[1].type" :placeholder="infosChamps[1].placeholder">
                 <template v-slot:input>
-                    <input v-model="$store.state.champsInscription.nom" :type="infosChamps[1].type" :id="infosChamps[1].for_id" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-900" :placeholder="infosChamps[1].placeholder">
+                    <input v-model="$store.state.champsInscription.name" :type="infosChamps[1].type" :id="infosChamps[1].for_id" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-900" :placeholder="infosChamps[1].placeholder">
                 </template>
             </champForm>
         </div>

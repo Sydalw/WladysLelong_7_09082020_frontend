@@ -3,7 +3,7 @@
         <layout>
             <template v-slot:viewContainer>
                 <div class="min-w-screen flex flex-col items-center justify-center px-5 py-5">
-                        <topic v-for="infoTopic in infosTopic" :key="infoTopic.postId" :id="infoTopic.id" :username="infoTopic.username" :title="infoTopic.title" :content="infoTopic.content" :createdAt="infoTopic.createdAt" :likes="infoTopic.Likes" :dislikes="infoTopic.Dislikes" :comments="infoTopic.CommentsNb" :pictureURL="infoTopic.pictureURL"></topic>
+                        <topic v-for="infoTopic in infosTopic" :key="infoTopic.postId" :id="infoTopic.id" :username="infoTopic.username" :title="infoTopic.title" :content="infoTopic.content" :createdAt="infoTopic.createdAt" :likes="infoTopic.Likes" :dislikes="infoTopic.Dislikes" :comments="infoTopic.CommentsNb" :profilePictureURL="infoTopic.pictureURL" :postId="infoTopic.postId"></topic>
                 </div>
             </template>
         </layout>
@@ -13,7 +13,7 @@
 <script>
 import layout from '@/components/layout/layout.vue'
 import axios from 'axios'
-import topic from '@/components/topic.vue'
+import topic from '@/components/topics/topic.vue'
 
 export default {
     name: 'Home',
@@ -23,15 +23,6 @@ export default {
     },
     data() {
         return {
-            infosProfile: {
-                prenom: "",
-                nom: "",
-                username: "",
-                email: "",
-                bio: "",
-                pictureURL: "",
-                createdAt: ""
-            },
             infosTopic: []
         }
         },

@@ -51,7 +51,7 @@ export default {
       .then(reponse => {
         localStorage.setItem('token', reponse.data.token);
         localStorage.setItem('id', reponse.data.userId);
-        this.$router.push('Profile');
+        this.$router.push('Profile/'+reponse.data.userId);
       })
       .catch(error => {
         console.log(error);

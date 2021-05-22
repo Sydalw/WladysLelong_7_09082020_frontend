@@ -10,8 +10,9 @@ export default new Vuex.Store({
       password:''
     },
     infosConnectedProfile: {
-      prenom: "",
-      nom: "",
+      id: "",
+      name: "",
+      surname: "",
       username: "",
       email: "",
       bio: "",
@@ -19,8 +20,8 @@ export default new Vuex.Store({
       createdAt: ""
     },
     champsInscription: {
-      prenom: '',
-      nom: '',
+      name: '',
+      surname: '',
       pseudo: '',
       email: '',
       pwd1:'',
