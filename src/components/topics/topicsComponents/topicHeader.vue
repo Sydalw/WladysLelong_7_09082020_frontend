@@ -4,7 +4,7 @@
             <img class="rounded-full border h-5 w-5" :src="getImgUrl(profilePictureURL)" :alt="username">
         </a>
         <span class="hidden sm:block text-gray-500 ml-2">Posté par</span>
-        <router-link :to="{ name: 'Profile', params: {id: id}}" class="text-gray-500 mx-1">{{username}}</router-link>
+        <router-link :to="{ name: 'Profile', params: {id: id}}" class="text-gray-500 mx-1 hover:text-gray-900 dark:hover:text-white">{{username}}</router-link>
         <span class="text-gray-500">{{transformDate()}}</span>
     </div>
 </template>
@@ -24,9 +24,9 @@
             getImgUrl(pic) {
                 if (pic === null) {
                     pic = "icon.png";
-                    return require('../../../assets/'+pic);
+                    return require('/public/images/'+pic);
                 } else {    
-                return require('../../../assets/'+pic);
+                return require('/public/images/'+pic);
                 }
             },
             transformDate: function() {

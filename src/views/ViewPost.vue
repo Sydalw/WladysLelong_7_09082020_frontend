@@ -9,29 +9,34 @@
                         :title="infosTopic[0].title" 
                         :content="infosTopic[0].content" 
                         :createdAt="infosTopic[0].createdAt" 
-                        :likes="infosTopic[0].Likes" 
-                        :dislikes="infosTopic[0].Dislikes" 
+                        :likes="Number(infosTopic[0].Likes)" 
+                        :dislikes="Number(infosTopic[0].Dislikes)" 
                         :comments="infosTopic[0].CommentsNb" 
-                        :profilePictureURL="infosTopic[0].profilePictureURL" 
-                        :postId="infosTopic[0].postId">
+                        :profilePictureURL="infosTopic[0].profilePictureURL"
+                        :myLike="infosTopic[0].myLike"
+                        :myDislike="infosTopic[0].myDislike" 
+                        :topicId="infosTopic[0].id">
                     </topic>
-
-                        <comment class="ml-10" v-for="infoComment in infosComment" 
+                    <div class="min-w-full flex flex-col items-center justify-center pl-5">
+                        <comment class="" v-for="infoComment in infosComment" 
                             :key="infoComment.commentId"
                             title="" 
-                            :id="infoComment.id" 
+                            :id="infoComment.id"
+                            :postId="infoComment.postId" 
                             :username="infoComment.username" 
                             :profilePictureURL="infoComment.profilePictureURL" 
                             :content="infoComment.content"
                             :commentId="infoComment.commentId" 
                             :createdAt="infoComment.createdAt" 
-                            :likes="infoComment.Likes" 
-                            :dislikes="infoComment.Dislikes" 
+                            :likes="Number(infoComment.Likes)" 
+                            :dislikes="Number(infoComment.Dislikes)"
+                            :myLike="infoComment.myLike"
+                            :myDislike="infoComment.myDislike" 
                             :comments="infoComment.CommentsNb"
                             :relatedComment="infoComment.relatedComment"
                             :updatedAt="infoComment.updatedAt">
                         </comment>
-
+                    </div>
                 </div>
             </template>
         </layout>
@@ -55,13 +60,17 @@ export default {
         return {
             infosTopic: [],
             postId: this.$route.params.id,
-            infosComment: []
+            infosComment: [],
+            myLikes: {
+                like:"",
+                dislike:""
+            }
         }
         },
     methods: { 
         
     },
-    created() {
+    mounted() {
         const token = localStorage.getItem('token');
         const userId = localStorage.getItem('id');
         axios({

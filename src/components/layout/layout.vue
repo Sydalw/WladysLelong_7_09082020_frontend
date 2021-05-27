@@ -1,9 +1,9 @@
 <template>
     <div class="sm:flex">
         <!-- Sidebar starts -->
-        <div class="sm:hidden flex justify-around sticky z-20 bg-gray-800 shadow items-center h-12">
+        <div class="sm:hidden flex justify-around sticky z-20 bg-blue-900 dark:bg-gray-900 -shadow items-center h-12">
 
-                <router-link to="/" class="-ml-6">
+                <router-link to="/Home" class="-ml-6">              <!--TODO créer menu-->
                     <svg class="" xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 -53 384 384"><path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0" fill="#fff"/><path d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0" fill="#fff"/><path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0" fill="#fff"/></svg>
                 </router-link>
 
@@ -14,7 +14,7 @@
             </div>
             <div></div>
         </div>
-        <aside class="sticky z-10 top-0 left-0 hidden sm:w-auto md:w-64 h-screen sm:flex flex-col absolute bg-gray-800 shadow justify-between">
+        <aside class="sticky z-10 top-0 left-0 hidden sm:w-auto md:w-64 h-screen sm:flex flex-col absolute bg-blue-900 dark:bg-gray-900 shadow justify-between">
             <div class="px-8">
                 <div>
                     <router-link to="/Home" class="h-16 w-full flex items-center">
@@ -23,7 +23,7 @@
                     </router-link>
                 </div>
                 <ul class="mt-12">
-                    <li class="flex w-full justify-between text-gray-300 hover:text-gray-500 cursor-pointer items-center mb-6">
+                    <li class="flex w-full justify-between text-gray-300 hover:text-white cursor-pointer items-center mb-6">
                         <router-link to="/WritePost" class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 478 478" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="m392.533 0h-307.2c-47.105.056-85.277 38.228-85.333 85.333v307.2c.056 47.105 38.228 85.277 85.333 85.333h307.2c47.105-.056 85.277-38.228 85.333-85.333v-307.2c-.056-47.105-38.228-85.277-85.333-85.333zm51.2 392.533c0 28.277-22.923 51.2-51.2 51.2h-307.2c-28.277 0-51.2-22.923-51.2-51.2v-307.2c0-28.277 22.923-51.2 51.2-51.2h307.2c28.277 0 51.2 22.923 51.2 51.2z" fill="currentColor"/>
@@ -41,7 +41,7 @@
                             </svg>
                             <span class="text-sm ml-2 hidden md:block">Les derniers posts</span>
                         </div>
-                        <div class="py-1 px-3 bg-gray-700 rounded text-gray-500 hidden md:flex items-center justify-center text-xs">8</div>
+                        <div class="py-1 px-3 bg-gray-500 rounded text-gray-300 hidden md:flex items-center justify-center text-xs">8</div>
                     </li>
                     <li class="flex w-full justify-between text-gray-500 hover:text-gray-400 cursor-pointer items-center mb-6">
                         <div class="flex items-center">
@@ -51,7 +51,7 @@
                             </svg>
                             <span class="text-sm ml-2 hidden md:block">Les plus populaires</span>
                         </div>
-                        <div class="py-1 px-3 bg-gray-700 rounded text-gray-500 hidden md:flex items-center justify-center text-xs">5</div>
+                        <div class="py-1 px-3 bg-gray-500 rounded text-gray-300 hidden md:flex items-center justify-center text-xs">5</div>
                     </li>
                 </ul>
             </div>
@@ -63,14 +63,34 @@
                     </router-link>
                 </div>
             </div>
-            <div class="px-8 border-t border-gray-700">
-                <ul class="w-full flex items-center justify-between bg-gray-800">
-                    <li class="hidden md:block cursor-pointer text-white hover:text-gray-500 pt-5 pb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z"></path>
-                            <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path>
-                            <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
-                        </svg>
+            <div class="px-8 border-t border-gray-900">
+                <ul class="w-full flex items-center justify-between bg-blue-900 dark:bg-gray-900">
+                    <li class="hidden md:block pt-5 pb-3">
+                        <div class="flex align-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon mr-2 text-white" height="20" width="20" viewBox="-12 0 448 448.04455" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m224.023438 448.03125c85.714843.902344 164.011718-48.488281 200.117187-126.230469-22.722656 9.914063-47.332031 14.769531-72.117187 14.230469-97.15625-.109375-175.890626-78.84375-176-176 .972656-65.71875 37.234374-125.832031 94.910156-157.351562-15.554688-1.980469-31.230469-2.867188-46.910156-2.648438-123.714844 0-224.0000005 100.289062-224.0000005 224 0 123.714844 100.2851565 224 224.0000005 224zm0 0" fill="currentColor"/>
+                            </svg>
+                            <div class="relative inline-block w-10 select-none">
+                                <input v-on:click="switchTheme(toggleTheme)" v-model="toggleTheme" true-value="dark" false-value="light" type="checkbox" name="toggleDark" id="toggleDark" class="transition-transform transform translate-x-0 duration-500 theme-switch absolute block w-3 h-3 rounded-full bg-white hover:bg-yellow-400 appearance-none cursor-pointer mx-1 my-1"/>
+                                <label for="toggleDark" class="theme-switch-label block overflow-hidden w-10 h-5 rounded-full bg-blue-300 cursor-pointer"></label>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="icon ml-2 text-gray-600" height="20" width="20" viewBox="0 0 302.4 302.4" stroke-width="1.5" stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" xml:space="preserve">
+                                <path d="M204.8,97.6C191.2,84,172,75.2,151.2,75.2s-40,8.4-53.6,22.4c-13.6,13.6-22.4,32.8-22.4,53.6s8.8,40,22.4,53.6
+                                    c13.6,13.6,32.8,22.4,53.6,22.4s40-8.4,53.6-22.4c13.6-13.6,22.4-32.8,22.4-53.6S218.8,111.2,204.8,97.6z"/>
+                                <path d="M151.2,51.6c5.6,0,10.4-4.8,10.4-10.4V10.4c0-5.6-4.8-10.4-10.4-10.4c-5.6,0-10.4,4.8-10.4,10.4v30.8
+                                    C140.8,46.8,145.6,51.6,151.2,51.6z"/>
+                                <path d="M236.4,80.8l22-22c4-4,4-10.4,0-14.4s-10.4-4-14.4,0l-22,22c-4,4-4,10.4,0,14.4C225.6,84.8,232,84.8,236.4,80.8z"/>
+                                <path d="M292,140.8h-30.8c-5.6,0-10.4,4.8-10.4,10.4c0,5.6,4.8,10.4,10.4,10.4H292c5.6,0,10.4-4.8,10.4-10.4
+                                    C302.4,145.6,297.6,140.8,292,140.8z"/>
+                                <path d="M236,221.6c-4-4-10.4-4-14.4,0s-4,10.4,0,14.4l22,22c4,4,10.4,4,14.4,0s4-10.4,0-14.4L236,221.6z"/>
+                                <path d="M151.2,250.8c-5.6,0-10.4,4.8-10.4,10.4V292c0,5.6,4.8,10.4,10.4,10.4c5.6,0,10.4-4.8,10.4-10.4v-30.8
+                                    C161.6,255.6,156.8,250.8,151.2,250.8z"/>
+                                <path d="M66,221.6l-22,22c-4,4-4,10.4,0,14.4s10.4,4,14.4,0l22-22c4-4,4-10.4,0-14.4C76.8,217.6,70.4,217.6,66,221.6z"/>
+                                <path d="M51.6,151.2c0-5.6-4.8-10.4-10.4-10.4H10.4c-5.6,0-10.4,4.8-10.4,10.4s4.8,10.4,10.4,10.4h30.8
+                                    C46.8,161.6,51.6,156.8,51.6,151.2z"/>
+                                <path d="M66,80.8c4,4,10.4,4,14.4,0s4-10.4,0-14.4l-22-22c-4-4-10.4-4-14.4,0s-4,10.4,0,14.4L66,80.8z"/>
+                            </svg>
+                        </div>
                     </li>
                     <li class="hidden md:block cursor-pointer hover:text-gray-500 text-white pt-5 pb-3">
                         <router-link to="/EditProfile"  class="">
@@ -81,7 +101,7 @@
                             </svg>
                         </router-link>
                     </li>
-                    <li class="hidden md:block cursor-pointer hover:text-gray-500 text-white pt-5 pb-3">
+                    <li class="hidden cursor-pointer hover:text-gray-500 text-white pt-5 pb-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z"></path>
                             <path d="m11.812 0c-6.523 0-11.812 5.289-11.812 11.812s5.289 11.813 11.812 11.813 11.813-5.29 11.813-11.813-5.29-11.812-11.813-11.812zm2.459 18.307c-.608.24-1.092.422-1.455.548-.362.126-.783.189-1.262.189-.736 0-1.309-.18-1.717-.539s-.611-.814-.611-1.367c0-.215.015-.435.045-.659.031-.224.08-.476.147-.759l.761-2.688c.067-.258.125-.503.171-.731.046-.23.068-.441.068-.633 0-.342-.071-.582-.212-.717-.143-.135-.412-.201-.813-.201-.196 0-.398.029-.605.09-.205.063-.383.12-.529.176l.201-.828c.498-.203.975-.377 1.43-.521.455-.146.885-.218 1.29-.218.731 0 1.295.178 1.692.53.395.353.594.812.594 1.376 0 .117-.014.323-.041.617-.027.295-.078.564-.152.811l-.757 2.68c-.062.215-.117.461-.167.736-.049.275-.073.485-.073.626 0 .356.079.599.239.728.158.129.435.194.827.194.185 0 .392-.033.626-.097.232-.064.4-.121.506-.17zm-.134-10.878c-.353.328-.778.492-1.275.492-.496 0-.924-.164-1.28-.492-.354-.328-.533-.727-.533-1.193 0-.465.18-.865.533-1.196.356-.332.784-.497 1.28-.497.497 0 .923.165 1.275.497.353.331.53.731.53 1.196 0 .467-.177.865-.53 1.193z" fill="none"/>
@@ -97,7 +117,7 @@
             </div>
         </aside>
         <!-- Sidebar ends -->
-        <div class="mx-auto py-10 w-screen md:w-4/5 sm:w-11/12 sm:px-4">
+        <div class="mx-auto py-10 h-screen w-screen md:w-4/5 sm:w-11/12 sm:px-4">
                 <!--<Profile /> Place your content here -->
                 <slot name="viewContainer"></slot>
         </div>
@@ -123,22 +143,30 @@ export default {
                 bio: "",
                 pictureURL: "",
                 createdAt: ""
-            }
+            },
+            toggleTheme:""
         }
         },
     methods: {
          getImgUrl(pic) {
             if (pic === null) {
                 pic = "icon.png";
-                return require('../../assets/'+pic);
+                return require('/public/images/'+pic);
             } else {    
-            return require('../../assets/'+pic);
+            return require('/public/images/'+pic);
             }
         },
         deco: function() {
             localStorage.removeItem('token');
             localStorage.removeItem('id');
             this.$router.push({name: 'Login'});
+        },
+        switchTheme: function(theme) {
+            if(theme === "dark") {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
         }
     },
     beforeCreate() { 
@@ -173,7 +201,7 @@ export default {
     },
     created() {
         this.$store.state.infosConnectedProfile=this.infosProfile;
-    }
+    },
 }
 
 </script>

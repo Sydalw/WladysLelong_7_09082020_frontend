@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center hover:cursor-pointer justify-center bg-gray-200" id="app">
+  <main class="text-center hover:cursor-pointer justify-center bg-gray-100 dark:bg-gray-800" id="app">
     <!--<div class="text-center" id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/">Connexion</router-link> |
@@ -7,7 +7,7 @@
       <router-link to="/about">A propos</router-link>
     </div>-->
     <router-view/>
-  </div>
+  </main>
 </template>
 
 <style src="./assets/tailwind.css">
