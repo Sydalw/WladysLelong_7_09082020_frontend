@@ -3,11 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './assets/tailwind.css'
-import VueDarkMode from '@vue-a11y/dark-mode'
+import VeeValidate from 'vee-validate'
 
 //import LoadScript from 'vue-plugin-load-script';
  
-Vue.use(VueDarkMode);
+Vue.use(VeeValidate);
 Vue.config.productionTip = false
 
 new Vue({

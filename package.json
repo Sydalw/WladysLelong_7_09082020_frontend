@@ -10,7 +10,6 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/postcss7-compat": "^2.0.2",
-    "@vue-a11y/dark-mode": "^1.1.1",
     "autoprefixer": "^9",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
