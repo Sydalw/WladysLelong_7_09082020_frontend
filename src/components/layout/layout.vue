@@ -65,7 +65,7 @@
                 <ul class="w-full flex items-center justify-between bg-blue-900 dark:bg-gray-900">
                     <li class="hidden md:block pt-5 pb-3">
                         <div class="flex align-center text-gray-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="icon mr-2" :class="lightIconColor" height="20" width="20" viewBox="0 0 302.4 302.4" stroke-width="1.5" stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" xml:space="preserve">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="icon mr-2 transition-colors transition duration-500" :class="lightIconColor" id="lightIcon" height="20" width="20" viewBox="0 0 302.4 302.4" stroke-width="1.5" stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" xml:space="preserve">
                                 <path d="M204.8,97.6C191.2,84,172,75.2,151.2,75.2s-40,8.4-53.6,22.4c-13.6,13.6-22.4,32.8-22.4,53.6s8.8,40,22.4,53.6
                                     c13.6,13.6,32.8,22.4,53.6,22.4s40-8.4,53.6-22.4c13.6-13.6,22.4-32.8,22.4-53.6S218.8,111.2,204.8,97.6z"/>
                                 <path d="M151.2,51.6c5.6,0,10.4-4.8,10.4-10.4V10.4c0-5.6-4.8-10.4-10.4-10.4c-5.6,0-10.4,4.8-10.4,10.4v30.8
@@ -82,10 +82,10 @@
                                 <path d="M66,80.8c4,4,10.4,4,14.4,0s4-10.4,0-14.4l-22-22c-4-4-10.4-4-14.4,0s-4,10.4,0,14.4L66,80.8z"/>
                             </svg>
                             <div class="relative inline-block w-10 select-none">
-                                <input v-on:click="switchTheme(toggleTheme)" v-model="toggleTheme" true-value="dark" false-value="light" type="checkbox" name="toggleDark" id="toggleDark" class="transition-transform transform translate-x-0 duration-500 theme-switch absolute block w-3 h-3 rounded-full bg-white hover:bg-yellow-400 appearance-none cursor-pointer mx-1 my-1"/>
+                                <input v-on:click="switchTheme(toggleTheme)" v-model="toggleTheme" true-value="dark" false-value="true" type="checkbox" name="toggleDark" id="toggleDark" class="transition-transform transform translate-x-0 duration-500 theme-switch absolute block w-3 h-3 rounded-full bg-white hover:bg-yellow-400 appearance-none cursor-pointer mx-1 my-1"/>
                                 <label for="toggleDark" class="theme-switch-label block overflow-hidden w-10 h-5 rounded-full bg-blue-300 cursor-pointer"></label>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon ml-2" :class="darkIconColor" height="20" width="20" viewBox="-12 0 448 448.04455" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon ml-2 transition-colors transition duration-500" :class="darkIconColor" id="darkIcon" height="20" width="20" viewBox="-12 0 448 448.04455" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="m224.023438 448.03125c85.714843.902344 164.011718-48.488281 200.117187-126.230469-22.722656 9.914063-47.332031 14.769531-72.117187 14.230469-97.15625-.109375-175.890626-78.84375-176-176 .972656-65.71875 37.234374-125.832031 94.910156-157.351562-15.554688-1.980469-31.230469-2.867188-46.910156-2.648438-123.714844 0-224.0000005 100.289062-224.0000005 224 0 123.714844 100.2851565 224 224.0000005 224zm0 0" fill="currentColor"/>
                             </svg>
                         </div>
@@ -140,7 +140,9 @@ export default {
                 email: "",
                 bio: "",
                 pictureURL: "",
-                createdAt: ""
+                createdAt: "",
+                roleId: "",
+                roleName: ""
             },
             toggleTheme:"",
             darkIconColor:"",
@@ -161,19 +163,50 @@ export default {
             localStorage.removeItem('id');
             this.$router.push({name: 'Login'});
         },
+        switchToLight: function() {
+            localStorage.setItem('theme', 'light');
+            this.darkIconColor = "";
+            this.lightIconColor = "text-white";
+            document.querySelector("html").classList.remove("dark")
+            document.getElementById("toggleDark").checked=false;
+            console.log("A "+ document.getElementById("toggleDark").checked);
+        },
+        
+        switchToDark: function() {
+            localStorage.setItem('theme', 'dark');
+            this.darkIconColor = 'text-white';
+            this.lightIconColor = "";
+            document.querySelector("html").classList.add("dark");
+            document.getElementById("toggleDark").checked=true;
+            console.log("B "+document.getElementById("toggleDark").checked);
+        },
         switchTheme: function(theme) {
             if(theme === "dark") {
-                localStorage.setItem('theme', 'dark');
-                this.darkIconColor = 'text-white';
-                this.lightIconColor = "";
-                document.querySelector("html").classList.add("dark");
+                this.switchToLight();
             } else {
-                localStorage.setItem('theme', 'light');
-                this.darkIconColor = "";
-                this.lightIconColor = "text-white";
-                document.querySelector("html").classList.remove("dark")
+                this.switchToDark();
             }
-        }
+        },
+        initTheme: function() {
+            const cachedTheme = localStorage.theme ? localStorage.theme : false;
+            console.log(cachedTheme);
+            //  `true` if the user has set theme to `dark` on browser/OS
+            const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            console.log(userPrefersDark);
+
+            if (cachedTheme) {
+                this.toggleTheme=localStorage.getItem('theme');
+                this.toggleTheme === "dark"
+                    ? this.switchToDark()
+                    : this.switchToLight();
+            }
+            else if (userPrefersDark) {
+                this.switchToDark();
+            }
+            else {
+                this.switchToLight();
+            }
+        },
     },
     beforeCreate() { 
         const token = localStorage.getItem('token');
@@ -199,6 +232,8 @@ export default {
             this.infosProfile.bio=reponse.data.bio;
             this.infosProfile.pictureURL=reponse.data.pictureURL;
             this.infosProfile.createdAt=reponse.data.createdAt;
+            this.infosProfile.roleId=reponse.data.roleId;
+            this.infosProfile.roleName=reponse.data.Role.roleName;
         })
         .catch(error => {
             console.log(error);
@@ -207,6 +242,9 @@ export default {
     },
     created() {
         this.$store.state.infosConnectedProfile=this.infosProfile;
+    },
+    mounted() {
+        this.initTheme();
     },
 }
 

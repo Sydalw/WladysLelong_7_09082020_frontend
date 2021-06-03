@@ -91,7 +91,7 @@ export default {
                     })
                     .then(reponse => {
                         console.log(reponse);
-                        this.$router.push('Profile/'+localStorage.getitem('id'));       
+                        //this.$router.push('Profile/'+localStorage.getitem('id'));       
                     })
                     .catch(error => {
                         console.log(error);

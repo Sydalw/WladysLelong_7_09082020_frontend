@@ -18,7 +18,9 @@ export default new Vuex.Store({
       email: "",
       bio: "",
       pictureURL: "",
-      createdAt: ""
+      createdAt: "",
+      roleId: "",
+      roleName: ""
     },
     champsInscription: {
       name: '',

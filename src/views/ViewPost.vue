@@ -4,7 +4,7 @@
             <template v-slot:viewContainer>
                 <div class="min-w-screen flex flex-col items-center justify-center px-5 py-5">
                     <topic 
-                        :id="infosTopic[0].id" 
+                        :id="infosTopic[0].userId" 
                         :username="infosTopic[0].username" 
                         :title="infosTopic[0].title" 
                         :content="infosTopic[0].content" 
