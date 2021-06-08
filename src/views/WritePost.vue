@@ -6,7 +6,7 @@
                     <form action="" class="flex flex-col">
                         <champForm :largeur="infosChampsPost[0].largeur" :for_id="infosChampsPost[0].for_id" :nom="infosChampsPost[0].nom">
                             <template v-slot:input>
-                                <input v-model="$store.state.champsPost.title" v-validate="'required|alpha'" :class="{'input': true, 'border-red-500': errors.has(infosChampsPost[0].nom) }" :name="infosChampsPost[0].nom" :type="infosChampsPost[0].type" :id="infosChampsPost[0].for_id" class="w-full -ml-10 pl-2 pr-2 py-2 rounded-lg border-2 border-gray-200 outline-none dark:bg-gray-200 dark:focus:bg-gray-100 focus:border-blue-900" :placeholder="infosChampsPost[0].placeholder">
+                                <input v-model="$store.state.champsPost.title" v-validate="'required'" :class="{'input': true, 'border-red-500': errors.has(infosChampsPost[0].nom) }" :name="infosChampsPost[0].nom" :type="infosChampsPost[0].type" :id="infosChampsPost[0].for_id" class="w-full -ml-10 pl-2 pr-2 py-2 rounded-lg border-2 border-gray-200 outline-none dark:bg-gray-200 dark:focus:bg-gray-100 focus:border-blue-900" :placeholder="infosChampsPost[0].placeholder">
                                 <div>
                                     <span class="text-red-500" v-if="errors.has(infosChampsPost[0].nom)">{{ errors.first(infosChampsPost[0].nom) }}</span>
                                 </div>
@@ -14,7 +14,7 @@
                         </champForm>
                         <champForm :largeur="infosChampsPost[1].largeur" :for_id="infosChampsPost[1].for_id" :nom="infosChampsPost[1].nom">
                             <template v-slot:input>
-                                <textarea v-model="$store.state.champsPost.content" v-validate="'required|alpha'" :class="{'input': true, 'border-red-500': errors.has(infosChampsPost[1].nom) }" :type="infosChampsPost[1].type" :id="infosChampsPost[1].for_id" :name="infosChampsPost[1].nom" class="h-60 w-full -ml-10 pl-2 pr-2 py-2 rounded-lg border-2 border-gray-200 outline-none dark:bg-gray-200 dark:focus:bg-gray-100 focus:border-blue-900" :placeholder="infosChampsPost[1].placeholder" spellcheck="false" style="position: relative;"> </textarea>
+                                <textarea v-model="$store.state.champsPost.content" v-validate="'required'" :class="{'input': true, 'border-red-500': errors.has(infosChampsPost[1].nom) }" :type="infosChampsPost[1].type" :id="infosChampsPost[1].for_id" :name="infosChampsPost[1].nom" class="h-60 w-full -ml-10 pl-2 pr-2 py-2 rounded-lg border-2 border-gray-200 outline-none dark:bg-gray-200 dark:focus:bg-gray-100 focus:border-blue-900" :placeholder="infosChampsPost[1].placeholder" spellcheck="false" style="position: relative;"> </textarea>
                                 <div>
                                     <span class="text-red-500" v-if="errors.has(infosChampsPost[1].nom)">{{ errors.first(infosChampsPost[1].nom) }}</span>
                                 </div>
@@ -91,7 +91,7 @@ export default {
                     })
                     .then(reponse => {
                         console.log(reponse);
-                        //this.$router.push('Profile/'+localStorage.getitem('id'));       
+                        this.$router.push('Home');       
                     })
                     .catch(error => {
                         console.log(error);

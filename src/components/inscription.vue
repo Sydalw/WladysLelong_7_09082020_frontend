@@ -36,7 +36,7 @@
         </champForm>
         <champForm :largeur="infosChamps[4].largeur" :for_id="infosChamps[4].for_id" :nom="infosChamps[4].nom" :type="infosChamps[4].type" :placeholder="infosChamps[4].placeholder">
             <template v-slot:input>
-                <input v-model="$store.state.champsInscription.pwd1" v-validate="'required|password'" :class="{'input': true, 'border-red-500': errors.has(infosChamps[4].nom) }" :name="infosChamps[4].nom" :type="infosChamps[4].type" :id="infosChamps[4].for_id" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-900" :placeholder="infosChamps[4].placeholder">
+                <input v-model="$store.state.champsInscription.pwd1" v-validate="'required|min:8'" :class="{'input': true, 'border-red-500': errors.has(infosChamps[4].nom) }" :name="infosChamps[4].nom" :type="infosChamps[4].type" :id="infosChamps[4].for_id" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-900" :placeholder="infosChamps[4].placeholder">
                 <div>
                     <span class="text-red-500" v-if="errors.has(infosChamps[4].nom)">{{ errors.first(infosChamps[4].nom) }}</span>
                 </div>
@@ -44,7 +44,7 @@
         </champForm>
         <champForm :largeur="infosChamps[5].largeur" :for_id="infosChamps[5].for_id" :nom="infosChamps[5].nom" :type="infosChamps[5].type" :placeholder="infosChamps[5].placeholder"> 
             <template v-slot:input>
-                <input v-model="$store.state.champsInscription.pwd2" v-validate="'required|password'" :class="{'input': true, 'border-red-500': errors.has(infosChamps[5].nom) }" :name="infosChamps[5].nom" :type="infosChamps[5].type" :id="infosChamps[5].for_id" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-900" :placeholder="infosChamps[5].placeholder">
+                <input v-model="$store.state.champsInscription.pwd2" v-validate="'required|min:8'" :class="{'input': true, 'border-red-500': errors.has(infosChamps[5].nom) }" :name="infosChamps[5].nom" :type="infosChamps[5].type" :id="infosChamps[5].for_id" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-900" :placeholder="infosChamps[5].placeholder">
                 <div>
                     <span class="text-red-500" v-if="errors.has(infosChamps[5].nom)">{{ errors.first(infosChamps[5].nom) }}</span>
                 </div>

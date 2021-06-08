@@ -34,6 +34,7 @@ export default new Vuex.Store({
       title: '',
       content:''
     },
+    infosTopic: [],
     theme: {}
     },
     mutations: {

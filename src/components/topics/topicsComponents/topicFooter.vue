@@ -38,9 +38,9 @@
                 <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"/></svg>
                 <span class="ml-2 text-xs font-semibold text-gray-500">{{comments}}</span>
             </router-link>
-            <div v-on:click="toggleNewComment()" class="hidden cursor-pointer flex hover:bg-gray-200 px-2 ml-2 py-2 rounded-sm">
+            <div v-on:click="toggleNewComment()" class="cursor-pointer flex hover:bg-gray-200 px-2 ml-2 py-2 rounded-sm">
                 <svg class="w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.08 12.16A2.99 2.99 0 0 1 0 10a3 3 0 0 1 5.08-2.16l8.94-4.47a3 3 0 1 1 .9 1.79L5.98 9.63a3.03 3.03 0 0 1 0 .74l8.94 4.47A2.99 2.99 0 0 1 20 17a3 3 0 1 1-5.98-.37l-8.94-4.47z"/></svg>
-                <span class="ml-2 text-xs font-semibold text-gray-500">Partager</span>
+                <span class="ml-2 hidden sm:block text-xs font-semibold text-gray-500">Partager</span>
             </div>
             <div v-on:click="toggleEdit()" v-if="id === $store.state.infosConnectedProfile.id" class="cursor-pointer flex hover:bg-gray-200 px-2 ml-2 py-2 rounded-sm">
                 <svg class="w-4 fill-current text-gray-500" viewBox="-6 0 396 396" xmlns="http://www.w3.org/2000/svg"><path d="m223.238281 314.78125-82.890625 21.992188c-3.441406.914062-7.109375-.074219-9.628906-2.589844s-3.511719-6.179688-2.605469-9.625l21.988281-83.457032c.453126-1.71875 1.351563-3.28125 2.609376-4.535156l154.347656-153.902344v-52.664062c-.019532-16.5625-13.441406-29.9804688-30-30h-247.058594c-16.5625.0195312-29.9804688 13.4375-30 30v336c.0195312 16.5625 13.4375 29.980469 30 30h247.054688c16.5625-.019531 29.984374-13.4375 30-30v-133.125l-79.316407 79.3125c-1.246093 1.246094-2.796875 2.140625-4.5 2.59375zm0 0"/><path d="m371.128906 89.324219c-11.710937-11.675781-30.65625-11.695313-42.386718-.039063l-5.574219 5.558594 46.816406 46.816406 5.527344-5.527344c11.695312-11.722656 11.695312-30.703124 0-42.425781zm0 0"/><path d="m173.890625 243.695312 46.8125 47.246094 135.140625-135.140625-46.835938-46.835937zm0 0"/><path d="m201.40625 299.882812-36.425781-36.761718-13.152344 49.914062zm0 0"/></svg>
