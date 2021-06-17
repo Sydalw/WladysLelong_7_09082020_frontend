@@ -7,7 +7,7 @@
                         <div class="min-w-screen flex items-center justify-center px-5 pb-5">
                             <div class="w-full max-w-4xl mx-auto bg-white dark:bg-gray-700 border border-gray-200 rounded-xl overflow-hidden text-gray-800">
                                 <div class="w-full h-36 md:h-48 bg-gray-100 bg-random"></div>
-                                <div class="rounded-full w-44 h-44 mx-auto md:mx-7 border-4 border-white bg-white -mt-28 md:-mt-32 z-10 relative overflow-hidden">
+                                <div class="rounded-full w-44 h-44 mx-auto md:mx-7 border-4 border-green-100 bg-white -mt-28 md:-mt-32 z-10 relative overflow-hidden">
                                     <img :src="getImgUrl(infosProfile.pictureURL)" :alt="infosProfile.username" class="w-full h-full">
                                 </div>
                                 <div class="w-full px-8 pt-3 pb-8">
@@ -22,6 +22,7 @@
                                             </div>
                                             <h3 class="text-xl dark:text-gray-300">{{infosProfile.name}} {{infosProfile.surname}}</h3>
                                             <h4 class="text-md text-gray-500">Membre depuis le {{transformDate()}}</h4>
+                                            <h4 class="text-md text-gray-500">Role : {{infosProfile.role}}</h4>
                                         </div>
                                         <div class="px-3 w-full md:w-1/3 mb-5">
                                             <div class="text-center md:text-left">
@@ -85,6 +86,8 @@
                     username: "",
                     email: "",
                     bio: "",
+                    role: "",
+                    roleId: "",
                     pictureURL: "",
                     createdAt: ""
                 },
@@ -128,6 +131,8 @@
                 this.infosProfile.username=reponse.data.username;
                 this.infosProfile.email=reponse.data.email;
                 this.infosProfile.bio=reponse.data.bio;
+                this.infosProfile.role=reponse.data.Role.roleName;
+                this.infosProfile.roleId=reponse.data.roleId;
                 this.infosProfile.pictureURL=reponse.data.pictureURL;
                 this.infosProfile.createdAt=reponse.data.createdAt;
             })

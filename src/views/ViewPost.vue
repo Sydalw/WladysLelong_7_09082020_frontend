@@ -50,7 +50,7 @@ import topic from '@/components/topics/topic.vue'
 import comment from '@/components/topics/comment.vue'
 
 export default {
-    name: 'Home',
+    name: 'ViewPost',
     components: {
         layout,
         topic,

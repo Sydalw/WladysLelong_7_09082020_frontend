@@ -3,11 +3,11 @@
         <topicHeader :id="id" :topicId="topicId" :username="username" :profilePictureURL="profilePictureURL" :createdAt="createdAt" :updatedAt="updatedAt"></topicHeader>
         <div class="">
             <div class="pl-5 flex flex-col">
-                <h2 v-if="!toggleEdit" class="sm:text-lg text-sm sm:font-medium mb-1 text-justify dark:text-gray-300">{{title}}</h2>
+                <h2 v-if="!toggleEdit" class="sm:text-lg text-sm sm:font-medium mb-1 text-justify dark:text-gray-300">{{localTitle}}</h2>
                 <input v-if="toggleEdit" v-model="localTitle" type="text" class="border rounded text-justify mr-3">
             </div>
             <div class="pl-5 flex flex-col">
-                <p v-if="!toggleEdit" class="text-xs font-light mb-5 text-justify pr-3 dark:text-gray-300">{{content}}</p>
+                <p v-if="!toggleEdit" class="text-xs font-light mb-5 text-justify pr-3 dark:text-gray-300">{{localContent | breakLine}}</p>
                 <textarea v-if="toggleEdit" v-model="localContent" type="textarea" class="border rounded font-light text-xs text-justify mr-3"></textarea>
             </div>
         </div>
@@ -38,6 +38,18 @@ import axios from 'axios'
             topicFooter,
             commentoverlay
         },
+        filters: {
+            breakLine: function (value) {
+                if (!value) return ''
+                value = value.toString()
+                return value.replace('\n', '</br>')
+            }
+        },
+        // computed: {
+        //     breakLine() {
+        //         return this.$options.filters.splitRows(this.localContent)
+        //     }
+        // },
         props: {
             id: Number,
             username: String,
@@ -95,6 +107,7 @@ import axios from 'axios'
                 })
             },
             setToggleDelete: function(payload) {
+                console.log("td "+ payload);
                 this.toggleDelete = payload;
             }
         }

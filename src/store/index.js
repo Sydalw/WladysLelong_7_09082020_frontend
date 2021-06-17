@@ -35,6 +35,8 @@ export default new Vuex.Store({
       content:''
     },
     infosTopic: [],
+    infosComment: [],
+    displayValidate: false,
     theme: {}
     },
     mutations: {

@@ -29,7 +29,7 @@
                                 <textarea v-model="infosChampsProfile[4].value" :type="infosChampsProfile[4].type" :id="infosChampsProfile[4].for_id" class="h-60 w-full -ml-10 pl-2 pr-2 py-2 rounded-lg border-2 border-gray-200 outline-none dark:bg-gray-200 dark:focus:bg-gray-100 focus:border-blue-900" rows="3" :placeholder="$store.state.infosConnectedProfile.bio" spellcheck="false" style="position: relative;"></textarea>
                             </template>
                         </champForm>
-                        <label class="block">
+                        <label class="block my-4">
                             <span class="text-xs font-semibold dark:text-white px-1">Image</span>
                             <input type="file" class="text-xs dark:text-white font-semibold mt-1 block w-full">
                         </label>

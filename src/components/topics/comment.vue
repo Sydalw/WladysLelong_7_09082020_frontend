@@ -2,8 +2,9 @@
     <article class="w-full max-w-4xl border border-gray-200 rounded-xl pl-3 pt-2 mt-5 bg-white dark:bg-gray-700" :id="id">
         <topicHeader :id="id" :topicId="commentId" :username="username" :profilePictureURL="profilePictureURL" :createdAt="createdAt" :updatedAt="updatedAt"></topicHeader>
         <div class="">
-            <div class="pl-5">
-                <p class="text-xs font-light mb-5 text-justify pr-3 dark:text-gray-300">{{content}}</p>
+            <div class="pl-5 pl-5 flex flex-col">
+                <p v-if="!toggleEdit" class="text-xs font-light mb-5 text-justify pr-3 dark:text-gray-300">{{localContent}}</p>
+                <textarea v-if="toggleEdit" v-model="localContent" type="textarea" class="border rounded font-light text-xs text-justify mr-3"></textarea>
             </div>
         </div>
         <topicFooter v-on:validateEdit="validateEditTopic()" v-on:emitToggleEdit="setToggleEdit($event)" v-on:emitToggleNewComment="changeToggleNewComment($event)" :id="id" :topicId="commentId" :likes="likes" :dislikes="dislikes" :comments="comments" :myLike="myLike" :myDislike="myDislike" :footerToggleEdit="false" topicType="comment"></topicFooter>
@@ -90,6 +91,7 @@ import axios from 'axios'
                 })
             },
             setToggleDelete: function(payload) {
+                console.log("td "+ payload);
                 this.toggleDelete = payload;
             }
         }
