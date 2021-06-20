@@ -34,6 +34,7 @@
                             :myDislike="infoComment.myDislike" 
                             :comments="infoComment.CommentsNb"
                             :relatedComment="infoComment.relatedComment"
+                            :deletionFlag="infoComment.deletionFlag"
                             :updatedAt="infoComment.updatedAt">
                         </comment>
                     </div>
