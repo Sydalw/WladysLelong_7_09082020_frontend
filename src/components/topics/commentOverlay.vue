@@ -31,6 +31,7 @@ export default {
     },
     props: {
         topicId: Number,
+        postId: Number,
         topicType: String,
         reveleOverlay: Boolean
     },
@@ -48,20 +49,30 @@ export default {
         closeOverlay: function() {
             this.$emit('emitCloseOverlay', false);
         },
+        topicTypeIdentifier: function() {
+            if(this.topicType === "post"){
+                return null;
+            } else {
+                return this.topicId;
+            }
+        },
         confirmComment: function() {
             const token = localStorage.getItem('token');
+            const userId = localStorage.getItem('id');
+            const idTokenKeyValue = userId+":"+token;
             console.log(this.topicId);
             this.$validator.validateAll().then(result => {
                 if (result) {
                     axios({
                         method: 'post',
-                        url: 'http://localhost:3000/api/comment/'+this.topicId,
+                        url: 'http://localhost:3000/api/post/'+this.postId+'/comment',
                         data: {
                             id: localStorage.getItem('id'), 
-                            content: this.value
+                            content: this.value,
+                            relatedComment: this.topicTypeIdentifier()
                         },
                         headers: {
-                            'Authorization': `Basic ${token}` 
+                            'Authorization': `Basic ${idTokenKeyValue}` 
                         }
                     })
                     .then(reponse => {

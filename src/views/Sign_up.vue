@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div v-on:keyup.enter="signin()" class="">
         <div class="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
             <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
                 <div class="md:flex w-full">
@@ -30,7 +30,7 @@
                             <inscription msg="Inscription"/>
                             <div class="flex -mx-3 mt-7">
                                 <div class="w-full px-3 mb-5">
-                                    <button v-on:click="signin()" class="block w-full max-w-xs mx-auto bg-blue-900 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">M'INSCRIRE</button>
+                                    <button v-on:click="signin()" v-on:keyup.enter="signin()" class="block w-full max-w-xs mx-auto bg-blue-900 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">M'INSCRIRE</button>
                                 </div>
                             </div>
                         </div>

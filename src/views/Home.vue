@@ -45,14 +45,15 @@ export default {
     created() {
         const token = localStorage.getItem('token');
         const userId = localStorage.getItem('id');
+        const idTokenKeyValue = userId+":"+token;
         axios({
-            method: 'post',
+            method: 'get',
             url: 'http://localhost:3000/api/posts',
-            data: {
-                id: userId
-            },
+            // data: {
+            //     id: userId
+            // },
             headers: {
-                'Authorization': `Basic ${token}` 
+                'Authorization': `Basic ${idTokenKeyValue}` 
             }
         })
         .then(reponse => {

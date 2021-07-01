@@ -75,6 +75,9 @@ export default {
     methods: { 
         confirmPost: function() {
             const token = localStorage.getItem('token');
+            const userId = localStorage.getItem('id');
+            const idTokenKeyValue = userId+":"+token;
+
             this.$validator.validateAll().then(result => {
                 if (result) {
                     axios({
@@ -86,7 +89,7 @@ export default {
                             content: store.state.champsPost.content
                         },
                         headers: {
-                            'Authorization': `Basic ${token}` 
+                            'Authorization': `Basic ${idTokenKeyValue}` 
                         }
                     })
                     .then(reponse => {

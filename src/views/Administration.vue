@@ -175,6 +175,7 @@ export default {
                 this.toggleEdit[index].displayedDeleteComment=this.users[index].Role.deleteComment;
                 this.toggleEdit[index].displayedUpdateUser=this.users[index].Role.updateUser;
                 this.toggleEdit[index].displayedDeleteUser=this.users[index].Role.deleteUser;
+                this.toggleEdit[index].displayedRoleName=this.users[index].Role.roleName;
             } else {
                 this.toggleEdit[index].displayedRoleName=this.selectedRole;
                 this.temoinValidation = false;
@@ -225,6 +226,7 @@ export default {
         validateRole: function(index, id, selectedRole) {
             const token = localStorage.getItem('token');
             const userId = localStorage.getItem('id');
+            const idTokenKeyValue = userId+":"+token;
             console.log(selectedRole);
             var filteredRoles = this.roles.filter(a => a.roleName == selectedRole);
             console.log(filteredRoles);
@@ -236,7 +238,7 @@ export default {
                     roleId: filteredRoles[0].id
                 },
                 headers: {
-                    'Authorization': `Basic ${token}` 
+                    'Authorization': `Basic ${idTokenKeyValue}` 
                 }
             })
             .then(reponse => {
@@ -252,14 +254,15 @@ export default {
     beforeCreate() {
         const token = localStorage.getItem('token');
         const userId = localStorage.getItem('id');
+        const idTokenKeyValue = userId+":"+token;
         axios({
-            method: 'post',
+            method: 'get',
             url: 'http://localhost:3000/api/users',
-            data: {
-                id: userId
-            },
+            // data: {
+            //     id: userId
+            // },
             headers: {
-                'Authorization': `Basic ${token}` 
+                'Authorization': `Basic ${idTokenKeyValue}` 
             }
         })
         .then(reponse => {
@@ -271,13 +274,13 @@ export default {
             console.log(error);
         });
         axios({
-            method: 'post',
+            method: 'get',
             url: 'http://localhost:3000/api/users/roles',
-            data: {
-                id: userId
-            },
+            // data: {
+            //     id: userId
+            // },
             headers: {
-                'Authorization': `Basic ${token}` 
+                'Authorization': `Basic ${idTokenKeyValue}` 
             }
         })
         .then(reponse => {

@@ -18,7 +18,8 @@
             profilePictureURL: String,
             topicId: Number,
             createdAt: String,
-            updatedAt: String
+            updatedAt: String,
+            //roleName: String
         },
         methods: {
             getImgUrl(pic) {
@@ -29,6 +30,13 @@
                 return require('/public/images/'+pic);
                 }
             },
+            // getBorderColor: function() {
+            // if(this.infosProfile.roleName === "admin"){
+            //     return "border-red-500";
+            // } else if (this.infosProfile.roleName === "moderator"){
+            //     return "border-blue-500";
+            // }
+            // },
             transformDate: function() {
                 var datePost = new Date(this.createdAt);
                 var dateRef = Date.now();

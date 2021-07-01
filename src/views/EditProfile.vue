@@ -31,7 +31,7 @@
                         </champForm>
                         <label class="block my-4">
                             <span class="text-xs font-semibold dark:text-white px-1">Image</span>
-                            <input type="file" class="text-xs dark:text-white font-semibold mt-1 block w-full">
+                            <input type="file" id="file" @change="processFile($event)" class="text-xs dark:text-white font-semibold mt-1 block w-full">
                         </label>
                     </form>
                     <div>
@@ -68,69 +68,104 @@ export default {
                 for_id: "username",
                 type: "text",
                 largeur: "w-full",
-                value: ""
+                value: null
             },
             {
                 nom: "Nom",
                 for_id: "nom",
                 type: "textarea",
                 largeur: "w-full",
-                value: ""
+                value: null
             },
             {
                 nom: "Prénom",
                 for_id: "prenom",
                 type: "textarea",
                 largeur: "w-full",
-                value: ""
+                value: null
             },
             {
                 nom: "Email",
                 for_id: "email",
                 type: "email",
                 largeur: "w-full",
-                value: ""
+                value: null
             },
             {
                 nom: "Bio",
                 for_id: "bio",
                 type: "textarea",
-                largeur: "w-full"
-            },
-            {
-                nom: "Photo de Profil",
-                for_id: "pictureURL",
-                type: "textarea",
                 largeur: "w-full",
-                value: ""
+                value: null
+            }
+            ],
+            updatedDatas: {
+                username: this.$store.state.infosConnectedProfile.username,
+                name: this.$store.state.infosConnectedProfile.name,
+                surname: this.$store.state.infosConnectedProfile.surname,
+                email: this.$store.state.infosConnectedProfile.email,
+                bio: this.$store.state.infosConnectedProfile.bio,
+                pictureURL: this.$store.state.infosConnectedProfile.pictureURL
             },
-            ]
+            fileData: {}
         }
     },
-    methods: { 
+    methods: {
+        processFile(event) {
+            this.fileData = event.target.files[0]
+            console.log(this.fileData);
+            console.log(this.fileData.name);
+        }, 
+
+        checkFields: function(){
+            if(this.infosChampsProfile[0].value !== "" && this.infosChampsProfile[0].value !== null){
+                this.updatedDatas.username=this.infosChampsProfile[0].value;
+            }
+            if(this.infosChampsProfile[1].value !== "" && this.infosChampsProfile[1].value !== null){
+                this.updatedDatas.name=this.infosChampsProfile[1].value;
+            }
+            if(this.infosChampsProfile[2].value !== "" && this.infosChampsProfile[2].value !== null){
+                this.updatedDatas.surname=this.infosChampsProfile[2].value;
+            }
+            if(this.infosChampsProfile[3].value !== "" && this.infosChampsProfile[2].value !== null){
+                this.updatedDatas.email=this.infosChampsProfile[3].value;
+                console.log(this.updatedDatas.emailname);
+            } 
+            if(this.infosChampsProfile[4].value !== "" && this.infosChampsProfile[4].value !== null){
+                this.updatedDatas.bio=this.infosChampsProfile[4].value;
+                console.log(this.updatedDatas.bioname);
+            } 
+            if(this.fileData.name !== "" && this.fileData.name !== null){
+                this.updatedDatas.pictureURL=this.fileData.name;
+            }
+            console.log(this.updatedDatas);
+        },
         confirmProfile: function() {
             const token = localStorage.getItem('token');
-            const id = localStorage.getItem('id');
+            const userId = localStorage.getItem('id');
+            const idTokenKeyValue = userId+":"+token;
+            
+            this.checkFields();           
 
             axios({
                 method: 'put',
-                url: 'http://localhost:3000/api/user/'+id,
+                url: 'http://localhost:3000/api/user/'+userId,
                 data: {
                     id: localStorage.getItem('id'), 
-                    username: this.infosChampsProfile[0].value, 
-                    name: this.infosChampsProfile[1].value,
-                    surname: this.infosChampsProfile[2].value,  
-                    email: this.infosChampsProfile[3].value,
-                    bio: this.infosChampsProfile[4].value,
-                    pictureURL: this.infosChampsProfile[5].value
+                    username: this.updatedDatas.username, 
+                    name: this.updatedDatas.name,
+                    surname: this.updatedDatas.surname,  
+                    email: this.updatedDatas.email,
+                    bio: this.updatedDatas.bio,
+                    pictureURL: this.updatedDatas.pictureURL
                 },
                 headers: {
-                    'Authorization': `Basic ${token}` 
+                    'Authorization': `Basic ${idTokenKeyValue}` 
                 }
             })
             .then(reponse => {
                 console.log(reponse);
-                this.$router.push('Profile/'+id);     
+                this.$router.push('Profile/'+userId);     
             })
             .catch(error => {
                 console.log(error);

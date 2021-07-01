@@ -7,7 +7,7 @@
                         <div class="min-w-screen flex items-center justify-center px-5 pb-5">
                             <div class="w-full max-w-4xl mx-auto bg-white dark:bg-gray-700 border border-gray-200 rounded-xl overflow-hidden text-gray-800">
                                 <div class="w-full h-36 md:h-48 bg-gray-100 bg-random"></div>
-                                <div class="rounded-full w-44 h-44 mx-auto md:mx-7 border-4 border-green-100 bg-white -mt-28 md:-mt-32 z-10 relative overflow-hidden">
+                                <div class="rounded-full w-44 h-44 mx-auto md:mx-7 border-4 bg-white -mt-28 md:-mt-32 z-10 relative overflow-hidden" :class="getBorderColor()">
                                     <img :src="getImgUrl(infosProfile.pictureURL)" :alt="infosProfile.username" class="w-full h-full">
                                 </div>
                                 <div class="w-full px-8 pt-3 pb-8">
@@ -108,20 +108,27 @@
                 var datePost = new Date(this.infosProfile.createdAt);
                 datePost = datePost.toLocaleDateString("fr-FR", {year: "numeric", month: "2-digit", day: "2-digit"});
                 return datePost;
+            },
+            getBorderColor: function() {
+                if(this.infosProfile.role === "admin"){
+                    return "border-red-500";
+                } else if (this.infosProfile.role === "moderator"){
+                    return "border-blue-500";
+                }
             }
         },
         created() {
             const token = localStorage.getItem('token');
             const userId = localStorage.getItem('id');
-
+            const idTokenKeyValue = userId+":"+token;
             axios({
-                method: 'post',
+                method: 'get',
                 url: 'http://localhost:3000/api/user/'+ this.requestedId,
-                data: {
-                    id: userId
-                },
+                // data: {
+                //     id: userId
+                // },
                 headers: {
-                    'Authorization': `Basic ${token}` 
+                    'Authorization': `Basic ${idTokenKeyValue}` 
                 }
             })
             .then(reponse => {
@@ -141,13 +148,13 @@
             });
 
             axios({
-                method: 'post',
+                method: 'get',
                 url: 'http://localhost:3000/api/user/'+ this.requestedId +'/posts',
-                data: {
-                    id: userId
-                },
+                // data: {
+                //     id: userId
+                // },
                 headers: {
-                    'Authorization': `Basic ${token}` 
+                    'Authorization': `Basic ${idTokenKeyValue}` 
                 }
             })
             .then(reponse => {

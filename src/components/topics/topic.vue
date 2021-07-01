@@ -1,7 +1,7 @@
 <template>
-    <article v-if="toggleDelete" class="w-full max-w-4xl border border-gray-200 rounded-xl pl-3 pt-2 mt-5 bg-white dark:bg-gray-700" :id="id">
+    <article v-if="toggleDelete" class="w-full max-w-4xl border border-gray-200 rounded-xl pl-3 pt-2 mt-5 bg-white dark:bg-gray-700 dark:hover:border-gray-400 hover:border-gray-300" :id="id">
         <topicHeader :id="id" :topicId="topicId" :username="username" :profilePictureURL="profilePictureURL" :createdAt="createdAt" :updatedAt="updatedAt"></topicHeader>
-        <div class="">
+        <div v-on:click="displayTopic()" class="cursor-pointer">
             <div class="pl-5 flex flex-col">
                 <h2 v-if="!toggleEdit" class="sm:text-lg text-sm sm:font-medium mb-1 text-justify dark:text-gray-300">{{localTitle}}</h2>
                 <input v-if="toggleEdit" v-model="localTitle" type="text" class="border rounded text-justify mr-3">
@@ -12,7 +12,7 @@
             </div>
         </div>
         <topicFooter v-on:validateEdit="validateEditTopic()" v-on:emitToggleEdit="setToggleEdit($event)" v-on:emitToggleNewComment="changeToggleNewComment($event)" v-on:emitToggleDelete="setToggleDelete($event)" :id="id" :topicId="topicId" :likes="likes" :dislikes="dislikes" :comments="comments" :myLike="myLike" :myDislike="myDislike" :footerToggleEdit="false" topicType="post"></topicFooter>
-        <commentoverlay v-on:emitCloseOverlay="closeOverlay($event)" :reveleOverlay="toggleNewComment" :topicId="topicId" topicType="post"/>
+        <commentoverlay v-on:emitCloseOverlay="closeOverlay($event)" :reveleOverlay="toggleNewComment" :postId="topicId" :topicId="topicId" topicType="post"/>
     </article>
 </template>
 
@@ -63,7 +63,8 @@ import axios from 'axios'
             myDislike: Number,
             comments: Number,
             createdAt: String,
-            updatedAt: String
+            updatedAt: String,
+            //roleName: String
         },
         methods: {
             setToggleEdit: function(payload) {
@@ -79,6 +80,9 @@ import axios from 'axios'
             },
             validateEditTopic: function() {
                 const token = localStorage.getItem('token');
+                const userId = localStorage.getItem('id');
+                const idTokenKeyValue = userId+":"+token;
+
                 this.$validator.validateAll().then(result => {
                     if (result) {
                         axios({
@@ -90,7 +94,7 @@ import axios from 'axios'
                                 content: this.localContent
                             },
                             headers: {
-                                'Authorization': `Basic ${token}` 
+                                'Authorization': `Basic ${idTokenKeyValue}` 
                             }
                         })
                         .then(reponse => {
@@ -109,6 +113,13 @@ import axios from 'axios'
             setToggleDelete: function(payload) {
                 console.log("td "+ payload);
                 this.toggleDelete = payload;
+            },
+            displayTopic: function() {
+                if(this.$route.name !== "ViewPost"){
+                    this.$router.push({ name: 'ViewPost', params: {id: this.topicId}});
+                } else {
+                    this.$emit('emitResetTopic', false);
+                }
             }
         }
     }
