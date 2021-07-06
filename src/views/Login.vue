@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-on:keyup.enter="login()">
       <div class="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
           <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
               <div class="md:flex w-full">
@@ -45,6 +45,12 @@ export default {
     connexion
   },
   methods: { 
+
+    /**
+     * Envoi une requete vers le backend pour obtenir le token d'identification permettant la connexion à l'application
+     *
+     * @return  {[type]}  [return description]
+     */
     login: function() {
       axios
       .post('http://localhost:3000/api/login', {email: store.state.champsConnexion.email, password: store.state.champsConnexion.password})

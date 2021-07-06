@@ -122,7 +122,7 @@
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                                             </svg>
                                                         </div>
-                                                        <div v-on:click="deleteProfile()" class="w-4 mr-2 transform hover:text-red-500 hover:scale-110 cursor-pointer">
+                                                        <div v-on:click="deleteProfile(user.id)" class="w-4 mr-2 transform hover:text-red-500 hover:scale-110 cursor-pointer">
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                             </svg>
@@ -167,6 +167,15 @@ export default {
 
     },
     methods: {
+
+        /**
+         * Permet de sortir du mode édition : si témoin de validation=false, on reprend les données initiales stockées dans le buffer, sinon on laisse afficher les données sélectionnées
+         *
+         * @param   {[Number]}  index             index du profil à éditer dans le array qui contient tous les profils
+         * @param   {[Boolean]}  validationProof  temoin de validation qui permet de savoir qu'on revient à un affichage normal sans avoir validé les changements
+         *
+         * @return  {[type]}                   [return description]
+         */
         setToggleEdit: function(index, validationProof) {
             if(this.toggleEdit[index].toggle === true && validationProof === false){
                 this.toggleEdit[index].displayedUpdatePost=this.users[index].Role.updatePost;
@@ -182,11 +191,18 @@ export default {
             }
             this.toggleEdit[index].toggle=!this.toggleEdit[index].toggle;
             this.forceRerender();
-            //console.log(this.toggleEdit[index].toggle);
         },
         forceRerender() {
             this.componentKey += 1;
-        }, 
+        },
+
+        /**
+         * Ajoute le chemin du reprtoire aux noms des photos de profil
+         *
+         * @param   {[String]}  pic  Nom de photo de profil
+         *
+         * @return  {[String]}       Chemin complet
+         */ 
         getImgUrl(pic) {
             if (pic === null) {
                 pic = "icon.png";
@@ -195,6 +211,12 @@ export default {
             return require('/public/images/'+pic);
             }
         },
+
+        /**
+         * Stocke dans un buffer les données initiales du profil sélectionnées pour un réaffichage si on annule l'édition
+         *
+         * @return  {[type]}  [return description]
+         */
         copyRolesInBuffer: function(){
             for(let i=0; i< this.users.length; i++){
                 this.toggleEdit.push({toggle: false});
@@ -206,23 +228,63 @@ export default {
                 this.toggleEdit[i].displayedUpdateUser=this.users[i].Role.updateUser;
                 this.toggleEdit[i].displayedDeleteUser=this.users[i].Role.deleteUser;
             }
-            //console.log(this.toggleEdit);
         },
-        deleteProfile: function() {
-            alert("Êtes-vous sûr de vouloir supprimer ce profil ?");
+
+        /**
+         * permet de supprimer un profil
+         *
+         * @return  {[type]}  [return description]
+         */
+        deleteProfile: function(id) {
+            const token = localStorage.getItem('token');
+            const userId = localStorage.getItem('id');
+            const idTokenKeyValue = userId+":"+token;
+            if(confirm("Êtes-vous sûr de vouloir supprimer ce profil ?")){
+                axios({
+                    method: 'delete',
+                    url: 'http://localhost:3000/api/user/'+id,
+                    headers: {
+                        'Authorization': `Basic ${idTokenKeyValue}`,
+                    }
+                })
+                .then(reponse => {
+                    console.log(reponse);
+                    this.$router.push('/');     
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+            }
         },
+
+        /**
+         * Permet de mettre à jour le rendu avec le profil sélectionné en mode édition
+         *
+         * @param   {[Number]}  index     index du profil à éditer dans le array qui contient tous les profils
+         * @param   {[String]}  userRole  intitulé du role choisi
+         *
+         * @return  {[type]}            [return description]
+         */
         selectRole: function(index, userRole) {
             var filteredRoles = this.roles.filter(a => a.roleName == userRole);
-            //console.log(filteredRoles);
             this.toggleEdit[index].displayedUpdatePost= filteredRoles[0].updatePost;
             this.toggleEdit[index].displayedDeletePost= filteredRoles[0].deletePost;
             this.toggleEdit[index].displayedUpdateComment= filteredRoles[0].updateComment;
             this.toggleEdit[index].displayedDeleteComment= filteredRoles[0].deleteComment;
             this.toggleEdit[index].displayedUpdateUser= filteredRoles[0].updateUser;
             this.toggleEdit[index].displayedDeleteUser= filteredRoles[0].deleteUser;
-            //console.log(this.toggleEdit[index]);
             this.forceRerender();
         },
+
+        /**
+         * Permet de valider le role choisi et d'envoyer la requete vers le backend
+         *
+         * @param   {[Number]}  index         index du profil à éditer dans le array qui contient tous les profils
+         * @param   {[Number]}  id            id du profil sélectionné
+         * @param   {[String]}  selectedRole  role sélectionné
+         *
+         * @return  {[type]}                on passe le temoin de validation à true pour laisser les infos sélectionnées à l'écran
+         */
         validateRole: function(index, id, selectedRole) {
             const token = localStorage.getItem('token');
             const userId = localStorage.getItem('id');
@@ -258,9 +320,6 @@ export default {
         axios({
             method: 'get',
             url: 'http://localhost:3000/api/users',
-            // data: {
-            //     id: userId
-            // },
             headers: {
                 'Authorization': `Basic ${idTokenKeyValue}` 
             }
@@ -268,7 +327,6 @@ export default {
         .then(reponse => {
             this.users = reponse.data;
             this.copyRolesInBuffer();
-            //console.log(this.users);
         })
         .catch(error => {
             console.log(error);
@@ -276,9 +334,6 @@ export default {
         axios({
             method: 'get',
             url: 'http://localhost:3000/api/users/roles',
-            // data: {
-            //     id: userId
-            // },
             headers: {
                 'Authorization': `Basic ${idTokenKeyValue}` 
             }

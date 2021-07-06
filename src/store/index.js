@@ -20,7 +20,13 @@ export default new Vuex.Store({
       pictureURL: "",
       createdAt: "",
       roleId: "",
-      roleName: ""
+      roleName: "",
+      updatePost: "",
+      deletePost: "",
+      updateComment: "",
+      deleteComment: "",
+      updateProfile: "",
+      deleteProfile: ""
     },
     champsInscription: {
       name: '',
@@ -46,6 +52,14 @@ export default new Vuex.Store({
       }
     },
     actions: {
+
+      /**
+       * Permet de récupérer la connexion le theme de préférence de l'utilisateur ou bien celui qu'il a paramétré à sa dernière visite
+       *
+       * @param   {[type]}  commit  [commit description]
+       *
+       * @return  {[type]}          [return description]
+       */
       initTheme({commit}) {
         const cachedTheme = localStorage.theme ? localStorage.theme : false;
             //  `true` if the user has set theme to `dark` on browser/OS
@@ -58,8 +72,15 @@ export default new Vuex.Store({
             else
                 commit('SET_THEME', 'light')
       },
-      toggleTheme({ commit }) {
 
+      /**
+       * Permet de switcher d'un theme à l'autre
+       *
+       * @param   {[type]}  commit  [commit description]
+       *
+       * @return  {[type]}          [return description]
+       */
+      toggleTheme({ commit }) {
         switch (localStorage.theme) {
           case 'light':
               commit('SET_THEME', 'dark')

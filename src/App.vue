@@ -20,6 +20,12 @@
 
 export default {
   methods: {
+
+    /**
+     * Permet de vérifier les infos d'un champ de saisie
+     *
+     * @return  {[type]}  [return description]
+     */
       displayForm: function() {
         var $this = this;
         var $validator = this.$validator;

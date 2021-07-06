@@ -16,7 +16,7 @@
                                             <div class="inline-flex">
                                                 <h1 class="font-semibold dark:text-white text-2xl">{{infosProfile.username}}</h1>
                                                 <input v-model="$store.state.champsInscription.pseudo" type="text" class="hidden w-full -ml-10 pl-10 pr-3 py-2 rounded-lg outline-none focus:border-blue-900" :placeholder="infosProfile.username">
-                                                <router-link to="/EditProfile" v-if="infosProfile.id === $store.state.infosConnectedProfile.id" class="pt-2">
+                                                <router-link :to="{ name: 'EditProfile', params: {id: infosProfile.id}}" :initialId="infosProfile.id"  v-if="diplayEditProfile" class="pt-2">
                                                     <svg class="w-4 fill-current text-gray-500 ml-3 hover:text-blue-500" viewBox="-6 0 396 396" xmlns="http://www.w3.org/2000/svg"><path d="m223.238281 314.78125-82.890625 21.992188c-3.441406.914062-7.109375-.074219-9.628906-2.589844s-3.511719-6.179688-2.605469-9.625l21.988281-83.457032c.453126-1.71875 1.351563-3.28125 2.609376-4.535156l154.347656-153.902344v-52.664062c-.019532-16.5625-13.441406-29.9804688-30-30h-247.058594c-16.5625.0195312-29.9804688 13.4375-30 30v336c.0195312 16.5625 13.4375 29.980469 30 30h247.054688c16.5625-.019531 29.984374-13.4375 30-30v-133.125l-79.316407 79.3125c-1.246093 1.246094-2.796875 2.140625-4.5 2.59375zm0 0"/><path d="m371.128906 89.324219c-11.710937-11.675781-30.65625-11.695313-42.386718-.039063l-5.574219 5.558594 46.816406 46.816406 5.527344-5.527344c11.695312-11.722656 11.695312-30.703124 0-42.425781zm0 0"/><path d="m173.890625 243.695312 46.8125 47.246094 135.140625-135.140625-46.835938-46.835937zm0 0"/><path d="m201.40625 299.882812-36.425781-36.761718-13.152344 49.914062zm0 0"/></svg>
                                                 </router-link>
                                             </div>
@@ -43,7 +43,7 @@
                         <div class="min-w-screen flex flex-col items-center justify-center px-5 py-5">
                             <topic v-for="infoTopic in infosTopic" 
                                 :key="infoTopic.postId" 
-                                :id="infoTopic.id" 
+                                :userId="infoTopic.id" 
                                 :username="infoTopic.username" 
                                 :title="infoTopic.title" 
                                 :content="infoTopic.content" 
@@ -54,7 +54,8 @@
                                 :myDislike="infoTopic.myDislike" 
                                 :comments="infoTopic.CommentsNb" 
                                 :profilePictureURL="infoTopic.profilePictureURL" 
-                                :topicId="infoTopic.postId">
+                                :topicId="infoTopic.postId"
+                                :roleName="infoTopic.roleName">
                             </topic>
                         </div>
                     </div>
@@ -76,7 +77,7 @@
         components: {
             topic,
             layout
-        },
+        },  
         data() {
             return {
                 infosProfile: {
@@ -92,10 +93,19 @@
                     createdAt: ""
                 },
                 infosTopic: [],
-                requestedId: this.$route.params.id
+                requestedId: this.$route.params.id,
+                diplayEditProfile: false
             }
         },
         methods: {
+
+            /**
+             * Ajoute le chemin du reprtoire aux noms des photos de profil
+             *
+             * @param   {[String]}  pic  Nom de photo de profil
+             *
+             * @return  {[String]}       Chemin complet
+             */
             getImgUrl(pic) {
                 if (pic === null) {
                     pic = "icon.png";
@@ -104,11 +114,23 @@
                 return require('/public/images/'+pic);
                 }
             },
+
+            /**
+             * Permet de changer le format de la date vers le format DD/MM/AA
+             *
+             * @return  {[Date]}  Date du post/comment
+             */
             transformDate: function() {
                 var datePost = new Date(this.infosProfile.createdAt);
                 datePost = datePost.toLocaleDateString("fr-FR", {year: "numeric", month: "2-digit", day: "2-digit"});
                 return datePost;
             },
+
+            /**
+             * permet de choisir et d'afficher la le cercle de couleur autour des photos en fonction du role de l'utilisateur
+             *
+             * @return  {[type]}  [return description]
+             */
             getBorderColor: function() {
                 if(this.infosProfile.role === "admin"){
                     return "border-red-500";
@@ -124,9 +146,6 @@
             axios({
                 method: 'get',
                 url: 'http://localhost:3000/api/user/'+ this.requestedId,
-                // data: {
-                //     id: userId
-                // },
                 headers: {
                     'Authorization': `Basic ${idTokenKeyValue}` 
                 }
@@ -150,9 +169,6 @@
             axios({
                 method: 'get',
                 url: 'http://localhost:3000/api/user/'+ this.requestedId +'/posts',
-                // data: {
-                //     id: userId
-                // },
                 headers: {
                     'Authorization': `Basic ${idTokenKeyValue}` 
                 }
@@ -164,6 +180,12 @@
             .catch(error => {
                 console.log(error);
             })
+        },
+        beforeMount() {
+            console.log("update " + this.$store.state.infosConnectedProfile.updateProfile );
+            if(this.$store.state.infosConnectedProfile.updateProfile === true || this.infosProfile.id === this.$store.state.infosConnectedProfile.id) {
+                this.diplayEditProfile=true;        
+            }
         }
     }
 

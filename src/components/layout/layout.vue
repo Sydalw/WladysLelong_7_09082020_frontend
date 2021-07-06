@@ -24,15 +24,15 @@
                     </router-link>
                 </li>
                 <li class="flex w-full justify-between text-gray-500 hover:text-gray-400 cursor-pointer items-center mb-6">
-                    <div class="flex items-center">
+                    <router-link to="/Home" class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 60 54" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path d="m3.245 23.673c-1.2600359 4.8415222-.87303571 9.964701 1.1 14.562 4.3050059 9.2216234 13.5136751 15.1604182 23.69 15.278 9.78 0 18.937-5.573 25.132-13.513 3.7 1.989 3.908 2.2 4.6 2.2.5735744-.0004127 1.1193662-.2470639 1.4987036-.6772858.3793375-.4302218.5557066-1.0026023.4842964-1.5717142l-2.592-20.751c-.0781887-.6253293-.4465382-1.1772301-.9940183-1.4893449s-1.2100456-.347932-1.7879817-.0966551l-3.508 1.525c-3.815-7.389-8.9-12.926-16.949-15.009-.3888321-2.37725302-2.4401639-4.12441752-4.849-4.13h-24.07c-2.76005315.00330612-4.99669388 2.23994685-5 5v14c.00827967 2.0797722 1.29915003 3.9387051 3.245 4.673zm51.928-4.223 2.595 20.75c-4.43-2.382-4.427-2.411-4.707-2.457-.2518949-.0389978-.5092461.018112-.721.16-.04.028-.234.207-.241.217-5.871 7.86-14.047 12.719-22.432 13.333-9.58.716-19.457-5.2-23.5-14.05-1.80603539-4.2359895-2.13913186-8.9553257-.946-13.403h8.266c-1.787 8.833 5.522 16.881 13.957 16.881 4.447 0 10.03-2.818 13.756-8.352.01-.015.01-.032.019-.047s.023-.023.031-.038c.0186966-.0455571.0330926-.0927625.043-.141.0268404-.0619179.0466314-.1266581.059-.193.0071794-.126317.0008098-.2530396-.019-.378-.145-.585-.227-.5-6.046-3.636zm-27.173 4.55h1c2.7600532-.0033061 4.9966939-2.2399468 5-5v-3.62c3.6 1.693 5.489 4.288 7.428 7.865l-6.938 3.017c-.7024906.3051535-1.1690169.9846961-1.2013712 1.7499182-.0323543.7652222.3751461 1.4817194 1.0493712 1.8450818l4.545 2.448c-2.2610367 3.1133944-5.528384 5.3499147-9.249 6.331-4.228.983-9.163-1-12-4.824-2.1178539-2.798623-2.8838569-6.3930859-2.091-9.812 2.893 0 2.988-.082 3.364.247 8.031 7.027 7.561 6.753 8.093 6.753.5522847 0 1-.4477153 1-1zm21.03-4.06-5.762 2.506c-2.343-4.346-4.712-7.408-9.268-9.246v-6.953c5.631 1.627 10.636 5.239 15.03 13.693zm-47.03-14.94c0-1.65685425 1.34314575-3 3-3h24.07c.7877409.00495733 1.5407539.32487841 2.0911681.88844245.5504143.56356404.852471 1.32391918.8388319 2.11155755v14c0 1.6568542-1.3431458 3-3 3h-1c-1.1045695 0-2 .8954305-2 2v3.8l-5.776-5.054c-.5462006-.4797493-1.2480246-.7448434-1.975-.746-14.273 0-13.4.015-13.672-.031-1.47812929-.2105193-2.57648798-1.4759547-2.577-2.969z" fill="currentColor"/>
                             <path d="m6 17.993c0 .5522847.44771525 1 1 1h8c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1h-6.721c.714-1.343 2.628-2.665 3.886-3.53 1.2266641-.7022329 2.286909-1.6615021 3.108-2.812.9151194-1.43715875.9092604-3.27570288-.015-4.707-2.295-3.356-9.146-2.427-9.258 3.049 0 .55228475.44771525 1 1 1s1-.44771525 1-1c-.01918026-1.39142573.94137197-2.60506259 2.3-2.906 1.2019075-.32225036 2.4828916.05899031 3.313.986.4806475.78408706.4627012 1.77581618-.046 2.542-1.282 2.108-7.567 4.32-7.567 8.378z" fill="currentColor"/>
                             <path d="m17 15h6v3c0 .5522847.4477153 1 1 1s1-.4477153 1-1v-3h2c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1h-2v-8c.0003821-.42756257-.2711087-.80806653-.6755402-.94679329-.4044314-.13872676-.8523184-.00498145-1.1144598.33279329l-7 9c-.2345926.301572-.2768437.7104599-.1088735 1.0536295.1679703.3431696.5168011.5606357.8988735.5603705zm6-7.085v5.085h-3.956z" fill="currentColor"/>
                         </svg>
                         <span class="text-sm ml-2 md:block">Les derniers posts</span>
-                    </div>
-                    <div class="py-1 px-3 bg-gray-500 rounded text-gray-300 md:flex items-center justify-center text-xs">8</div>
+                    </router-link>
+                    <div class="py-1 px-3 bg-gray-500 rounded text-gray-300 md:flex items-center justify-center text-xs">{{nbLastPosts}}</div>
                 </li>
                 <li class="flex w-full justify-between text-gray-500 hover:text-gray-400 cursor-pointer items-center mb-6">
                     <div class="flex items-center">
@@ -65,15 +65,15 @@
                         </router-link>
                     </li>
                     <li class="flex w-full justify-between text-gray-500 hover:text-gray-400 cursor-pointer items-center mb-6">
-                        <div class="flex items-center">
+                        <router-link to="/Home" class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 60 54" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="m3.245 23.673c-1.2600359 4.8415222-.87303571 9.964701 1.1 14.562 4.3050059 9.2216234 13.5136751 15.1604182 23.69 15.278 9.78 0 18.937-5.573 25.132-13.513 3.7 1.989 3.908 2.2 4.6 2.2.5735744-.0004127 1.1193662-.2470639 1.4987036-.6772858.3793375-.4302218.5557066-1.0026023.4842964-1.5717142l-2.592-20.751c-.0781887-.6253293-.4465382-1.1772301-.9940183-1.4893449s-1.2100456-.347932-1.7879817-.0966551l-3.508 1.525c-3.815-7.389-8.9-12.926-16.949-15.009-.3888321-2.37725302-2.4401639-4.12441752-4.849-4.13h-24.07c-2.76005315.00330612-4.99669388 2.23994685-5 5v14c.00827967 2.0797722 1.29915003 3.9387051 3.245 4.673zm51.928-4.223 2.595 20.75c-4.43-2.382-4.427-2.411-4.707-2.457-.2518949-.0389978-.5092461.018112-.721.16-.04.028-.234.207-.241.217-5.871 7.86-14.047 12.719-22.432 13.333-9.58.716-19.457-5.2-23.5-14.05-1.80603539-4.2359895-2.13913186-8.9553257-.946-13.403h8.266c-1.787 8.833 5.522 16.881 13.957 16.881 4.447 0 10.03-2.818 13.756-8.352.01-.015.01-.032.019-.047s.023-.023.031-.038c.0186966-.0455571.0330926-.0927625.043-.141.0268404-.0619179.0466314-.1266581.059-.193.0071794-.126317.0008098-.2530396-.019-.378-.145-.585-.227-.5-6.046-3.636zm-27.173 4.55h1c2.7600532-.0033061 4.9966939-2.2399468 5-5v-3.62c3.6 1.693 5.489 4.288 7.428 7.865l-6.938 3.017c-.7024906.3051535-1.1690169.9846961-1.2013712 1.7499182-.0323543.7652222.3751461 1.4817194 1.0493712 1.8450818l4.545 2.448c-2.2610367 3.1133944-5.528384 5.3499147-9.249 6.331-4.228.983-9.163-1-12-4.824-2.1178539-2.798623-2.8838569-6.3930859-2.091-9.812 2.893 0 2.988-.082 3.364.247 8.031 7.027 7.561 6.753 8.093 6.753.5522847 0 1-.4477153 1-1zm21.03-4.06-5.762 2.506c-2.343-4.346-4.712-7.408-9.268-9.246v-6.953c5.631 1.627 10.636 5.239 15.03 13.693zm-47.03-14.94c0-1.65685425 1.34314575-3 3-3h24.07c.7877409.00495733 1.5407539.32487841 2.0911681.88844245.5504143.56356404.852471 1.32391918.8388319 2.11155755v14c0 1.6568542-1.3431458 3-3 3h-1c-1.1045695 0-2 .8954305-2 2v3.8l-5.776-5.054c-.5462006-.4797493-1.2480246-.7448434-1.975-.746-14.273 0-13.4.015-13.672-.031-1.47812929-.2105193-2.57648798-1.4759547-2.577-2.969z" fill="currentColor"/>
                                 <path d="m6 17.993c0 .5522847.44771525 1 1 1h8c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1h-6.721c.714-1.343 2.628-2.665 3.886-3.53 1.2266641-.7022329 2.286909-1.6615021 3.108-2.812.9151194-1.43715875.9092604-3.27570288-.015-4.707-2.295-3.356-9.146-2.427-9.258 3.049 0 .55228475.44771525 1 1 1s1-.44771525 1-1c-.01918026-1.39142573.94137197-2.60506259 2.3-2.906 1.2019075-.32225036 2.4828916.05899031 3.313.986.4806475.78408706.4627012 1.77581618-.046 2.542-1.282 2.108-7.567 4.32-7.567 8.378z" fill="currentColor"/>
                                 <path d="m17 15h6v3c0 .5522847.4477153 1 1 1s1-.4477153 1-1v-3h2c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1h-2v-8c.0003821-.42756257-.2711087-.80806653-.6755402-.94679329-.4044314-.13872676-.8523184-.00498145-1.1144598.33279329l-7 9c-.2345926.301572-.2768437.7104599-.1088735 1.0536295.1679703.3431696.5168011.5606357.8988735.5603705zm6-7.085v5.085h-3.956z" fill="currentColor"/>
                             </svg>
                             <span class="text-sm ml-2 hidden md:block">Les derniers posts</span>
-                        </div>
-                        <div class="py-1 px-3 bg-gray-500 rounded text-gray-300 hidden md:flex items-center justify-center text-xs">8</div>
+                        </router-link>
+                        <div class="py-1 px-3 bg-gray-500 rounded text-gray-300 hidden md:flex items-center justify-center text-xs">{{nbLastPosts}}</div>
                     </li>
                     <li class="flex w-full justify-between text-gray-500 hover:text-gray-400 cursor-pointer items-center mb-6">
                         <div class="flex items-center">
@@ -87,7 +87,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="h-16 w-full absolute left-4 bottom-12">
+            <div class="h-16 w-full absolute left-4 sm:bottom-36 md:bottom-12">
                 <div class="text-gray-300 hover:text-gray-500 cursor-pointer">
                     <router-link :to="{ name: 'Profile', params: {id: $store.state.infosConnectedProfile.id}}"  class="flex items-center h-12 w-12 ">
                         <img class="rounded-full border-2" :class="getBorderColor()" :src="getImgUrl(infosProfile.pictureURL)">
@@ -96,10 +96,10 @@
                 </div>
             </div>
             <div class="px-8 border-t border-gray-900">
-                <ul class="w-full flex items-center justify-between bg-blue-900 dark:bg-gray-900">
-                    <li class="hidden md:block pt-5 pb-3">
-                        <div class="flex align-center text-gray-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="icon mr-2 transition-colors transition duration-500" :class="lightIconColor" id="lightIcon" height="20" width="20" viewBox="0 0 302.4 302.4" stroke-width="1.5" stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" xml:space="preserve">
+                <ul class="cursor-pointer w-full flex sm:flex-col md:flex-row items-center justify-between bg-blue-900 dark:bg-gray-900">
+                    <li class="hidden sm:block pt-5 pb-3">
+                        <div class="flex sm:flex-col md:flex-row align-center text-gray-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class=" sm:mb-1 icon md:mr-2 transition-colors transition duration-500" :class="lightIconColor" id="lightIcon" height="20" width="20" viewBox="0 0 302.4 302.4" stroke-width="1.5" stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" xml:space="preserve">
                                 <path d="M204.8,97.6C191.2,84,172,75.2,151.2,75.2s-40,8.4-53.6,22.4c-13.6,13.6-22.4,32.8-22.4,53.6s8.8,40,22.4,53.6
                                     c13.6,13.6,32.8,22.4,53.6,22.4s40-8.4,53.6-22.4c13.6-13.6,22.4-32.8,22.4-53.6S218.8,111.2,204.8,97.6z"/>
                                 <path d="M151.2,51.6c5.6,0,10.4-4.8,10.4-10.4V10.4c0-5.6-4.8-10.4-10.4-10.4c-5.6,0-10.4,4.8-10.4,10.4v30.8
@@ -115,11 +115,11 @@
                                     C46.8,161.6,51.6,156.8,51.6,151.2z"/>
                                 <path d="M66,80.8c4,4,10.4,4,14.4,0s4-10.4,0-14.4l-22-22c-4-4-10.4-4-14.4,0s-4,10.4,0,14.4L66,80.8z"/>
                             </svg>
-                            <div class="relative inline-block w-10 select-none">
-                                <input v-on:click="switchTheme(toggleTheme)" v-model="toggleTheme" true-value="dark" false-value="true" type="checkbox" name="toggleDark" id="toggleDark" class="transition-transform transform translate-x-0 duration-500 theme-switch absolute block w-3 h-3 rounded-full bg-white hover:bg-yellow-400 appearance-none cursor-pointer mx-1 my-1"/>
-                                <label for="toggleDark" class="theme-switch-label block overflow-hidden w-10 h-5 rounded-full bg-blue-300 cursor-pointer"></label>
+                            <div v-on:click="switchTheme(toggleTheme)" class="relative sm:inline-block md:w-10 select-none">
+                                <input v-model="toggleTheme" true-value="dark" false-value="true" type="checkbox" name="toggleDark" id="toggleDark" :class="toggleThemeButtonColor" class="transition-transform transition-colors transform duration-500 theme-switch absolute block sm:ml-1 sm:mt-1 w-3 h-3 rounded-full hover:bg-gray-400 appearance-none cursor-pointer md:mx-1 md:my-1"/>
+                                <label for="toggleDark" class="theme-switch-label block overflow-hidden sm:h-5 sm:w-5 md:w-10 md:h-5 rounded-full bg-blue-300 cursor-pointer"></label>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon ml-2 transition-colors transition duration-500" :class="darkIconColor" id="darkIcon" height="20" width="20" viewBox="-12 0 448 448.04455" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="sm:mt-1 md:mt-0 icon md:ml-2 transition-colors transition duration-500" :class="darkIconColor" id="darkIcon" height="20" width="20" viewBox="-12 0 448 448.04455" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="m224.023438 448.03125c85.714843.902344 164.011718-48.488281 200.117187-126.230469-22.722656 9.914063-47.332031 14.769531-72.117187 14.230469-97.15625-.109375-175.890626-78.84375-176-176 .972656-65.71875 37.234374-125.832031 94.910156-157.351562-15.554688-1.980469-31.230469-2.867188-46.910156-2.648438-123.714844 0-224.0000005 100.289062-224.0000005 224 0 123.714844 100.2851565 224 224.0000005 224zm0 0" fill="currentColor"/>
                             </svg>
                         </div>
@@ -157,7 +157,7 @@
             <ul class="w-full flex items-center justify-around bg-blue-900 dark:bg-gray-900">
                 <li class="pt-5 pb-3">
                     <div class="flex align-center text-gray-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="icon mr-2 transition-colors transition duration-500" :class="lightIconColor" id="lightIcon" height="20" width="20" viewBox="0 0 302.4 302.4" stroke-width="1.5" stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" xml:space="preserve">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="icon mr-2 transition-colors transition duration-500" :class="lightIconColor" id="lightIcon2" height="20" width="20" viewBox="0 0 302.4 302.4" stroke-width="1.5" stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" xml:space="preserve">
                             <path d="M204.8,97.6C191.2,84,172,75.2,151.2,75.2s-40,8.4-53.6,22.4c-13.6,13.6-22.4,32.8-22.4,53.6s8.8,40,22.4,53.6
                                 c13.6,13.6,32.8,22.4,53.6,22.4s40-8.4,53.6-22.4c13.6-13.6,22.4-32.8,22.4-53.6S218.8,111.2,204.8,97.6z"/>
                             <path d="M151.2,51.6c5.6,0,10.4-4.8,10.4-10.4V10.4c0-5.6-4.8-10.4-10.4-10.4c-5.6,0-10.4,4.8-10.4,10.4v30.8
@@ -174,10 +174,10 @@
                             <path d="M66,80.8c4,4,10.4,4,14.4,0s4-10.4,0-14.4l-22-22c-4-4-10.4-4-14.4,0s-4,10.4,0,14.4L66,80.8z"/>
                         </svg>
                         <div class="relative inline-block w-10 select-none">
-                            <input v-on:click="switchTheme(toggleTheme)" v-model="toggleTheme" true-value="dark" false-value="true" type="checkbox" name="toggleDark" id="toggleDark" class="transition-transform transform translate-x-0 duration-500 theme-switch absolute block w-3 h-3 rounded-full bg-white hover:bg-yellow-400 appearance-none cursor-pointer mx-1 my-1"/>
+                            <input v-on:click="switchTheme(toggleTheme)" v-model="toggleTheme" type="checkbox" name="toggleDark" id="toggleDark" :class="toggleThemeButtonColor" class="transition-transform transition-colors transform duration-500 theme-switch absolute block w-3 h-3 rounded-full hover:bg-yellow-400 appearance-none cursor-pointer mx-1 my-1"/>
                             <label for="toggleDark" class="theme-switch-label block overflow-hidden w-10 h-5 rounded-full bg-blue-300 cursor-pointer"></label>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon ml-2 transition-colors transition duration-500" :class="darkIconColor" id="darkIcon" height="20" width="20" viewBox="-12 0 448 448.04455" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon ml-2 transition-colors transition duration-500" :class="darkIconColor" id="darkIcon2" height="20" width="20" viewBox="-12 0 448 448.04455" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path d="m224.023438 448.03125c85.714843.902344 164.011718-48.488281 200.117187-126.230469-22.722656 9.914063-47.332031 14.769531-72.117187 14.230469-97.15625-.109375-175.890626-78.84375-176-176 .972656-65.71875 37.234374-125.832031 94.910156-157.351562-15.554688-1.980469-31.230469-2.867188-46.910156-2.648438-123.714844 0-224.0000005 100.289062-224.0000005 224 0 123.714844 100.2851565 224 224.0000005 224zm0 0" fill="currentColor"/>
                         </svg>
                     </div>
@@ -233,10 +233,21 @@ export default {
             toggleTheme:"",
             darkIconColor:"",
             lightIconColor:"",
-            toggleMenu: false
+            toggleThemeButtonColor: "",
+            toggleMenu: false,
+            mdLightThemeProof: true,
+            mdDarkThemeProof: true,
+            nbLastPosts: 0
         }
         },
     methods: {
+        /**
+         * Ajoute le chemin du reprtoire aux noms des photos de profil
+         *
+         * @param   {[String]}  pic  [nom de la phto de profil]
+         *
+         * @return  {[String]}       [chemin complet]
+         */
          getImgUrl(pic) {
             if (pic === null) {
                 pic = "icon.png";
@@ -245,27 +256,60 @@ export default {
             return require('/public/images/'+pic);
             }
         },
+
+        /**
+         * permet de se déconnecter de l'application
+         *
+         * @return  {[type]}  [renvoie vers la page de login]
+         */
         deco: function() {
             localStorage.removeItem('token');
             localStorage.removeItem('id');
             this.$router.push({name: 'Login'});
         },
+
+        /**
+         * permet de passer vers le thème clair (changement de couleur des icones, translation du bouton)
+         *
+         * @return  {[type]}  []
+         */
         switchToLight: function() {
             localStorage.setItem('theme', 'light');
             this.darkIconColor = "";
             this.lightIconColor = "text-white";
-            document.querySelector("html").classList.remove("dark")
+            this.toggleThemeButtonColor = "bg-yellow-500";
             document.getElementById("toggleDark").checked=false;
-            console.log("A "+ document.getElementById("toggleDark").checked);
+            document.querySelector("html").classList.remove("dark");
+            console.log("Theme "+ document.getElementById("toggleDark").checked);
         },
+
+        /**
+         * permet de passer vers le thème sombre (changement de couleur des icones, translation du bouton)
+         *
+         * @return  {[type]}  [return description]
+         */
         switchToDark: function() {
             localStorage.setItem('theme', 'dark');
             this.darkIconColor = 'text-white';
+            if(document.documentElement.clientWidth >=768){
+                this.toggleThemeButtonColor = "bg-blue-800 translate-x-5";
+            } else {
+                this.toggleThemeButtonColor = "bg-blue-800";
+            }
+            document.getElementById("toggleDark").checked=true;
             this.lightIconColor = "";
             document.querySelector("html").classList.add("dark");
-            document.getElementById("toggleDark").checked=true;
-            console.log("B "+document.getElementById("toggleDark").checked);
+
+            console.log("Theme "+document.getElementById("toggleDark").checked);
         },
+
+        /**
+         * fonction associée au bouton qui permet de passer d'un theme à l'autre
+         *
+         * @param   {[String]}  theme  [nom du theme de départ]
+         *
+         * @return  {[type]}         [return description]
+         */
         switchTheme: function(theme) {
             if(theme === "dark") {
                 this.switchToLight();
@@ -273,6 +317,12 @@ export default {
                 this.switchToDark();
             }
         },
+
+        /**
+         * fonction d'initialisation du theme à la connexion
+         *
+         * @return  {[type]}  [return description]
+         */
         initTheme: function() {
             const cachedTheme = localStorage.theme ? localStorage.theme : false;
             console.log(cachedTheme);
@@ -293,9 +343,21 @@ export default {
                 this.switchToLight();
             }
         },
+
+        /**
+         * permet de changer la valeur qui sert à afficher le menu en affichage mobile
+         *
+         * @return  {[type]}  [return description]
+         */
         toggleDisplayMenu: function() {
             this.toggleMenu = !this.toggleMenu;
         },
+
+        /**
+         * permet de choisir et d'afficher la le cercle de couleur autour des photos en fonction du role de l'utilisateur
+         *
+         * @return  {[type]}  [return description]
+         */
         getBorderColor: function() {
             if(this.infosProfile.roleName === "admin"){
                 return "border-red-500";
@@ -312,9 +374,6 @@ export default {
         axios({
             method: 'get',
             url: 'http://localhost:3000/api/user/'+userId,
-            // data: {
-            //     id: userId
-            // },
             headers: {
                 'Authorization': `Basic ${idTokenKeyValue}` 
             }
@@ -331,11 +390,33 @@ export default {
             this.infosProfile.createdAt=reponse.data.createdAt;
             this.infosProfile.roleId=reponse.data.roleId;
             this.infosProfile.roleName=reponse.data.Role.roleName;
+            this.infosProfile.updatePost=reponse.data.Role.updatePost;
+            this.infosProfile.deletePost=reponse.data.Role.deletePost;
+            this.infosProfile.updateComment=reponse.data.Role.updateComment;
+            this.infosProfile.deleteComment=reponse.data.Role.deleteComment;
+            this.infosProfile.updateProfile=reponse.data.Role.updateUser;
+            this.infosProfile.deleteProfile=reponse.data.Role.deleteUser;
+            console.log(this.infosProfile);
         })
         .catch(error => {
             console.log(error);
             this.$router.push({ name: 'Login' });
+        });
+
+        axios({
+            method: 'get',
+            url: 'http://localhost:3000/api/nbPosts',
+            headers: {
+                'Authorization': `Basic ${idTokenKeyValue}` 
+            }
         })
+        .then(reponse => {
+            this.nbLastPosts=reponse.data[0].Nb;
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
     },
     created() {
         this.$store.state.infosConnectedProfile=this.infosProfile;

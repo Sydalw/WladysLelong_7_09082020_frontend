@@ -5,7 +5,7 @@
                 <div class="min-w-screen flex flex-col items-center justify-center px-5 py-5">
                     <topic v-for="infoTopic in infosTopic" 
                         :key="infoTopic.postId" 
-                        :id="infoTopic.id" 
+                        :userId="infoTopic.id" 
                         :username="infoTopic.username" 
                         :title="infoTopic.title" 
                         :content="infoTopic.content" 
@@ -16,7 +16,8 @@
                         :myDislike="infoTopic.myDislike" 
                         :comments="infoTopic.CommentsNb" 
                         :profilePictureURL="infoTopic.pictureURL" 
-                        :topicId="infoTopic.postId"></topic>
+                        :topicId="infoTopic.postId"
+                        :roleName="infoTopic.roleName"></topic>
                 </div>
             </template>
         </layout>
@@ -44,14 +45,11 @@ export default {
     },
     created() {
         const token = localStorage.getItem('token');
-        const userId = localStorage.getItem('id');
-        const idTokenKeyValue = userId+":"+token;
+        const id = localStorage.getItem('id');
+        const idTokenKeyValue = id+":"+token;
         axios({
             method: 'get',
             url: 'http://localhost:3000/api/posts',
-            // data: {
-            //     id: userId
-            // },
             headers: {
                 'Authorization': `Basic ${idTokenKeyValue}` 
             }

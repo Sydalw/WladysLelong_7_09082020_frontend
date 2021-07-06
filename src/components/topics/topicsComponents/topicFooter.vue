@@ -59,7 +59,7 @@
     export default {
         name: 'topicFooter',
         props: {
-            id: Number,
+            userId: Number,
             topicId: Number,
             likes: Number,
             dislikes: Number,
@@ -81,6 +81,15 @@
             }
         },
         methods: {
+
+            /**
+             * Permet de mettre à jour l'affichage des likes après que l'on ait liké ou disliké un post/comment
+             *
+             * @param   {[Number]}  likeValue  -1 ou 1, en fonction Dislike ou like demandé
+             * @param   {[Number]}  myNewLike  -1, 0 ou 1 en fonction de l'état précédent du like ou du dislike (si on était à 0 like, 0 dislike, prend la valeur du likeValue, sinon prend la valeur 0)
+             *
+             * @return  {[type]}             [return description]
+             */
             fctMyLikeUpdate: function(likeValue, myNewLike) {
                 if(likeValue === 1){
                     if(myNewLike === 1) {
@@ -111,10 +120,18 @@
                     }
                 }
             },
+
+            /**
+             * Permet de liker ou disliker un post/comment : envoi une requete post vers le backend et appelle la fonction fctMyLikeUpdate
+             *
+             * @param   {[Number]}  likeValue  Doit prendre la valeur -1 ou 1, en fonction si c'est dislike ou like  
+             *
+             * @return  {[type]}             [return description]
+             */
             fctLike: function(likeValue) {
                 const token = localStorage.getItem('token');
-                const userId = localStorage.getItem('id');
-                const idTokenKeyValue = userId+":"+token;
+                const id = localStorage.getItem('id');
+                const idTokenKeyValue = id+":"+token;
                 var myNewLike = 0;
 
                 if(this.myRendedLike !== 1 && this.myRendedDislike !== 1){
@@ -127,7 +144,7 @@
                         method: 'post',
                         url: 'http://localhost:3000/api/post/'+ this.topicId +'/liking',
                         data: {
-                            id: userId,
+                            id: id,
                             liking: myNewLike
                         },
                         headers: {
@@ -146,7 +163,7 @@
                         method: 'post',
                         url: 'http://localhost:3000/api/comment/'+ this.topicId +'/liking',
                         data: {
-                            id: userId,
+                            id: id,
                             liking: myNewLike
                         },
                         headers: {
@@ -162,29 +179,51 @@
                     });
                 }
             },
+
+            /**
+             * Permet d'émettre vers le composant parent l'ordre d'éditer le post/comment
+             *
+             * @return  {[Boolean]}  True or false en fonction de l'état précédent
+             */
             toggleEdit: function() {
                 this.$emit('emitToggleEdit', !this.displayValidate);
                 this.displayValidate=!this.displayValidate;
             },
+
+            /**
+             * Permet d'émettre vers le composant parent l'ordre de lancer l'édition d'un nouveau commentaire
+             *
+             * @return  {[Boolean]}  
+             */
             toggleNewComment: function() {
                 this.$emit('emitToggleNewComment', true);
             },
+
+            /**
+             * Permet d'émettre vers le composant parent l'ordre de valider l'édition du commentaire qui vient d'être corrigé
+             *
+             * @return  {[Boolean]}  [return description]
+             */
             editTopic: function() {
                 this.$emit('validateEdit', true);
                 this.displayValidate=false;
             },
+
+            /**
+             * Permet de lancer une requête delete vers le backend pour supprimer le post/comment
+             *
+             * @return  {[type]}  [return description]
+             */
             deleteTopic: function() {
+                console.log(this.topicId);
                 const token = localStorage.getItem('token');
-                const userId = localStorage.getItem('id');
-                const idTokenKeyValue = userId+":"+token;
+                const id = localStorage.getItem('id');
+                const idTokenKeyValue = id+":"+token;
 
                 if(this.topicType === "post") {
                     axios({
                         method: 'delete',
                         url: 'http://localhost:3000/api/post/'+ this.topicId,
-                        data: {
-                            id: userId
-                        },
                         headers: {
                             'Authorization': `Basic ${idTokenKeyValue}` 
                         }
@@ -192,6 +231,7 @@
                     .then(reponse => {
                         console.log(reponse);
                         this.$emit('emitToggleDelete', false);
+                        this.$router.push({ name: 'Home'});
                     })
                     .catch(error => {
                         console.log(error);
@@ -201,7 +241,7 @@
                         method: 'delete',
                         url: 'http://localhost:3000/api/comment/'+ this.topicId,
                         data: {
-                            id: userId
+                            id: id
                         },
                         headers: {
                             'Authorization': `Basic ${idTokenKeyValue}` 
@@ -210,37 +250,48 @@
                     .then(reponse => {
                         console.log(reponse);
                         this.$emit('emitToggleDelete', false);
+                        window.location.reload();
+                        //this.$forceUpdate();
+                        //this.$router.push({ name: 'ViewPost', params: {id: this.topicId}});
                     })
                     .catch(error => {
                         console.log(error);
                     });
                 }
             },
+
+            /**
+             * Permet d'envoyer l'ordre vers le composant grand-parent d'afficher les commentaires reliés au post/comment cliqué
+             *
+             * @return  {[type]}  [return description]
+             */
             toggleDisplayRelatedComments: function() {
                 this.$parent.$emit('emitDisplayRelatedComments', !this.displayRelatedComments);
                 this.displayRelatedComments=!this.displayRelatedComments;
             }
         },
         created() {
+            if(this.$route.name === "ViewPost"){
                 if(this.topicType === "post") {
-                    if(this.id === this.$store.state.infosConnectedProfile.id || this.$store.state.infosConnectedProfile.Role.updatePost===true) {
-                        console.log("a");
+                    if(this.userId === this.$store.state.infosConnectedProfile.id || this.$store.state.infosConnectedProfile.updatePost===true) {
+                        //console.log("a");
                         this.displayEdit = true;
                     }
-                    if(this.id === this.$store.state.infosConnectedProfile.id || this.$store.state.infosConnectedProfile.Role.deletePost===true) {
-                        console.log("c");
+                    if(this.userId === this.$store.state.infosConnectedProfile.id || this.$store.state.infosConnectedProfile.deletePost===true) {
+                        //console.log("c");
                         this.displayDelete = true;
                     }
                 } else {
-                    if(this.id === this.$store.state.infosConnectedProfile.id || this.$store.state.infosConnectedProfile.Role.updateComment===true) {
-                        console.log("b");
+                    if(this.userId === this.$store.state.infosConnectedProfile.id || this.$store.state.infosConnectedProfile.updateComment===true) {
+                        //console.log("b");
                         this.displayEdit = true;
                     }
-                    if(this.id === this.$store.state.infosConnectedProfile.id || this.$store.state.infosConnectedProfile.Role.deleteComment===true) {
-                        console.log("d");
+                    if(this.userId === this.$store.state.infosConnectedProfile.id || this.$store.state.infosConnectedProfile.deleteComment===true) {
+                        //console.log("d");
                         this.displayDelete = true;
                     }
                 }
+            }
         }
     }
 </script>

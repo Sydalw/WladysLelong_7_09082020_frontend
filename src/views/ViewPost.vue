@@ -29,13 +29,10 @@ import layout from '@/components/layout/layout.vue'
         }
     },
      methods: { 
-        setTopicNumber: function(payload) {
-            this.commentRelatedId = payload;
-            this.forceRerender();
-        },
-        forceRerender() {
-            this.componentKey += 1;
-        }, 
+        
+     },
+     mounted() {
+         console.log(this.$route.params.id);
      }
  }
 </script>

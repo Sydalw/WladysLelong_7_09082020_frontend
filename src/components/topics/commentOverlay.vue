@@ -1,5 +1,5 @@
 <template>
-    <div v-if="reveleOverlay" class="fixed flex justify-center items-center w-100 h-100 z-20 top-0 left-0 right-0 bottom-0">
+    <div v-if="reveleOverlay" v-on:keyup.enter="confirmComment()" class="fixed flex justify-center items-center w-100 h-100 z-20 top-0 left-0 right-0 bottom-0">
         <div class="fixed sm:ml-22 md:ml-64 top-0 left-0 right-0 bottom-0 w-100 h-100 opacity-90 bg-gray-800"></div>
         <div class="w-full relative sm:ml-24 md:ml-64 bg-gray-800 opacity-100 max-w-4xl">
             <button v-on:click="closeOverlay()" class="absolute border dark:border-gray-800 border-white bg-red-700 hover:bg-red-500 px-1 rounded top-2 right-5 text-white">X</button>
@@ -46,9 +46,21 @@ export default {
         }
     },
     methods: {
+        
+        /**
+         * Envoi au composant parent l'ordre de fermer l'overlay 
+         *
+         * @return  {[Boolean]}  [return description]
+         */
         closeOverlay: function() {
             this.$emit('emitCloseOverlay', false);
         },
+
+        /**
+         * Permet d'identifier à quoi est relié le commentaire sélectionné
+         *
+         * @return  {[Number]}  renvoi null si le commentaire est relié à un post, sinon le topicId du commentaire auquel il est relié
+         */
         topicTypeIdentifier: function() {
             if(this.topicType === "post"){
                 return null;
@@ -56,6 +68,12 @@ export default {
                 return this.topicId;
             }
         },
+
+        /**
+         * envoi une requete post vers le backend pour créer un commentaire
+         *
+         * @return  {[type]}  [return description]
+         */
         confirmComment: function() {
             const token = localStorage.getItem('token');
             const userId = localStorage.getItem('id');
@@ -78,6 +96,7 @@ export default {
                     .then(reponse => {
                         console.log(reponse);
                         this.closeOverlay();
+                        window.location.reload();
                         //this.$router.push('Profile/'+localStorage.getitem('id'));       
                     })
                     .catch(error => {

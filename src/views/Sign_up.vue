@@ -52,7 +52,13 @@ export default {
   components: {
     inscription
   },
-  methods: { 
+  methods: {
+    
+    /**
+     * Envoi une requete post vers le backend pour confirmer une inscription
+     *
+     * @return  {[type]}  [return description]
+     */
     signin: function() {
       if (store.state.champsInscription.pwd1===store.state.champsInscription.pwd2) {
         axios

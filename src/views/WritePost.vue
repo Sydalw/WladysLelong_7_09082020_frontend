@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-on:keyup.enter="confirmPost()">
         <layout>
             <template v-slot:viewContainer>
                 <div class="mx-auto py-10 h-screen w-screen md:w-4/5 sm:w-11/12 sm:px-4">
@@ -20,10 +20,10 @@
                                 </div>
                             </template>
                         </champForm>
-                        <label class="flex flex-col">
+                        <!-- <label class="flex flex-col">
                             <span class="text-xs font-semibold dark:text-white px-1">Image</span>
                             <input type="file" class="text-xs dark:text-white font-semibold mt-1">
-                        </label>
+                        </label> -->
                     </form>
                     <div>
                         <div class="flex -mx-3 mt-7">
@@ -73,6 +73,12 @@ export default {
         }
     },
     methods: { 
+
+        /**
+         * Permet de confirmer l'envoi des infos saisies vers le backend via une requete post
+         *
+         * @return  {[type]}  [return description]
+         */
         confirmPost: function() {
             const token = localStorage.getItem('token');
             const userId = localStorage.getItem('id');
